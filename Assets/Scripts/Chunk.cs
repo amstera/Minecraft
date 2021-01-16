@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 public class Chunk
@@ -76,6 +75,11 @@ public class Chunk
         return VoxelMap[xCheck, yCheck, zCheck];
     }
 
+    public Blocks GetBlockFromGlobalVector3(Vector3 pos)
+    {
+        return (Blocks)GetVoxelFromGlobalVector3(pos);
+    }
+
     public void EditVoxel(Vector3 pos, Blocks block)
     {
         int xCheck = Mathf.FloorToInt(pos.x);
@@ -144,14 +148,14 @@ public class Chunk
 
     public void UpdateChunk()
     {
-        ClearMeshData();
-
         while (Modifications.Count > 0)
         {
             VoxelMod v = Modifications.Dequeue();
             Vector3 pos = v.Position -= Position;
             VoxelMap[(int)pos.x, (int)pos.y, (int)pos.z] = (byte)v.BlockId;
         }
+
+        ClearMeshData();
 
         for (int y = 0; y < VoxelData.ChunkHeight; y++)
         {

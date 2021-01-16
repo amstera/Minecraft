@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -18,7 +19,7 @@ public class Player : MonoBehaviour
     public float PlayerWidth = 0.15f;
     public float CheckIncrement = 0.075f;
     public float Reach = 8;
-    public Blocks SelectedBlock = Blocks.Dirt;
+    public Blocks SelectedBlock = Blocks.Empty;
 
     private float _horizontal;
     private float _vertical;
@@ -117,13 +118,23 @@ public class Player : MonoBehaviour
             //Destroy block
             if (Input.GetMouseButtonDown(0))
             {
-                _world.GetChunkFromVector3(HighlightBlock.position).EditVoxel(HighlightBlock.position, Blocks.Empty);
+                Chunk chunk = _world.GetChunkFromVector3(HighlightBlock.position);
+                Blocks block = chunk.GetBlockFromGlobalVector3(HighlightBlock.position);
+                if (block != Blocks.Empty)
+                {
+                    chunk.EditVoxel(HighlightBlock.position, Blocks.Empty);
+                    _world.GenerateBlock(block, HighlightBlock.position);
+                }
             }
 
             //Create block
             if (Input.GetMouseButtonDown(1))
             {
-                _world.GetChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, SelectedBlock);
+                SelectedBlock = Inventory.Blocks?.LastOrDefault() ?? Blocks.Empty;
+                if (SelectedBlock != Blocks.Empty)
+                {
+                    _world.GetChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, SelectedBlock);
+                }
             }
         }
     }

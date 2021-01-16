@@ -309,6 +309,9 @@ MonoBehaviour:
     bottomFaceTexture: 7
     leftFaceTexture: 7
     rightFaceTexture: 7
+  DirtBlock: {fileID: 3717071137883751269, guid: d551c8b445ae24e03b2fba5efffd4fb4, type: 3}
+  WoodBlock: {fileID: 3717071137883751269, guid: 16eec96803f5a416bbb020dd73dd572b, type: 3}
+  BlockParticles: {fileID: 7953311011937868878, guid: 4912041ed400643d58460ca42eb8d48d, type: 3}
 --- !u!4 &251078197
 Transform:
   m_ObjectHideFlags: 0
@@ -937,6 +940,7 @@ GameObject:
   - component: {fileID: 1037752340}
   - component: {fileID: 1037752339}
   - component: {fileID: 1037752341}
+  - component: {fileID: 1037752342}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -961,13 +965,13 @@ MonoBehaviour:
   HighlightBlock: {fileID: 511703373}
   PlaceBlock: {fileID: 1390893705}
   WalkSpeed: 3
-  SprintSpeed: 6
+  SprintSpeed: 5.5
   JumpForce: 5
-  Gravity: -9.8
+  Gravity: -9.81
   PlayerWidth: 0.15
   CheckIncrement: 0.1
   Reach: 8
-  SelectedBlock: 4
+  SelectedBlock: 0
 --- !u!4 &1037752340
 Transform:
   m_ObjectHideFlags: 0
@@ -1000,8 +1004,22 @@ MonoBehaviour:
   sensitivityY: 15
   minimumX: -360
   maximumX: 360
-  minimumY: -60
-  maximumY: 60
+  minimumY: -90
+  maximumY: 90
+--- !u!136 &1037752342
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037752338}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1390893704
 GameObject:
   m_ObjectHideFlags: 0
