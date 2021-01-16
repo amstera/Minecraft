@@ -1,0 +1,28 @@
+﻿<Properties StartupConfiguration="{6D84558F-D623-0CB4-722B-FC6D96BDFC85}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Structure.cs">
+    <Files>
+      <File FileName="Assets/Scripts/BiomeAttribute.cs" Line="20" Column="35" />
+      <File FileName="Assets/Scripts/VoxelData.cs" Line="15" Column="58" />
+      <File FileName="Assets/Scripts/World.cs" Line="299" Column="14" />
+      <File FileName="Assets/Scripts/Chunk.cs" Line="147" Column="25" />
+      <File FileName="Assets/Scripts/Noise.cs" Line="5" Column="25" />
+      <File FileName="Assets/Scripts/Player.cs" Line="108" Column="10" />
+      <File FileName="Assets/Scripts/MouseLook.cs" />
+      <File FileName="Assets/Scripts/Structure.cs" Line="21" Column="10" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Minecraft" expanded="True" selected="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="17130dbc-a2e0-4e84-900a-ba95c2e114e4" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
