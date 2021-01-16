@@ -14,6 +14,7 @@ public class World : MonoBehaviour
 
     public GameObject DirtBlock;
     public GameObject WoodBlock;
+    public GameObject StoneBlock;
     public GameObject BlockParticles;
 
     private Chunk[,] _chunks = new Chunk[VoxelData.WorldSizeInChunks, VoxelData.WorldSizeInChunks];
@@ -80,6 +81,10 @@ public class World : MonoBehaviour
         else if (block == Blocks.Wood)
         {
             selectedBlock = WoodBlock;
+        }
+        else if (block == Blocks.Stone)
+        {
+            selectedBlock = StoneBlock;
         }
         if (selectedBlock != null)
         {

@@ -19,7 +19,7 @@ public class MiniBlock : MonoBehaviour
         if (other.name == "Player")
         {
             Destroy(gameObject);
-            Inventory.Blocks.Add(Block);
+            Inventory.Instance.Add(Block);
         }
     }
 }

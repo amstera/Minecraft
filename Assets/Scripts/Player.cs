@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -19,7 +20,6 @@ public class Player : MonoBehaviour
     public float PlayerWidth = 0.15f;
     public float CheckIncrement = 0.075f;
     public float Reach = 8;
-    public Blocks SelectedBlock = Blocks.Empty;
 
     private float _horizontal;
     private float _vertical;
@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
             {
                 Chunk chunk = _world.GetChunkFromVector3(HighlightBlock.position);
                 Blocks block = chunk.GetBlockFromGlobalVector3(HighlightBlock.position);
-                if (block != Blocks.Empty)
+                if (block != Blocks.Empty && block != Blocks.Bedrock)
                 {
                     chunk.EditVoxel(HighlightBlock.position, Blocks.Empty);
                     _world.GenerateBlock(block, HighlightBlock.position);
@@ -130,10 +130,11 @@ public class Player : MonoBehaviour
             //Create block
             if (Input.GetMouseButtonDown(1))
             {
-                SelectedBlock = Inventory.Blocks?.LastOrDefault() ?? Blocks.Empty;
-                if (SelectedBlock != Blocks.Empty)
+                Blocks selectedBlock = Inventory.Instance.GetSelectedBlock();
+                if (selectedBlock != Blocks.Empty)
                 {
-                    _world.GetChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, SelectedBlock);
+                    _world.GetChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, selectedBlock);
+                    Inventory.Instance.Remove(selectedBlock);
                 }
             }
         }

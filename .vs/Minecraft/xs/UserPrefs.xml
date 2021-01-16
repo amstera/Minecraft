@@ -1,16 +1,16 @@
 ﻿<Properties StartupConfiguration="{6D84558F-D623-0CB4-722B-FC6D96BDFC85}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/World.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Inventory.cs">
     <Files>
+      <File FileName="Assets/Scripts/VoxelData.cs" Line="10" Column="1" />
       <File FileName="Assets/Scripts/Chunk.cs" Line="1" Column="34" />
-      <File FileName="Assets/Scripts/BiomeAttribute.cs" Line="20" Column="35" />
-      <File FileName="Assets/Scripts/VoxelData.cs" Line="15" Column="58" />
-      <File FileName="Assets/Scripts/Noise.cs" />
-      <File FileName="Assets/Scripts/Player.cs" Line="130" Column="27" />
-      <File FileName="Assets/Scripts/MouseLook.cs" Line="12" Column="21" />
-      <File FileName="Assets/Scripts/Structure.cs" Line="35" Column="1" />
+      <File FileName="Assets/Scripts/BiomeAttribute.cs" />
+      <File FileName="Assets/Scripts/Noise.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Player.cs" Line="126" Column="33" />
+      <File FileName="Assets/Scripts/MouseLook.cs" />
+      <File FileName="Assets/Scripts/Structure.cs" />
       <File FileName="Assets/Scripts/MiniBlock.cs" Line="20" Column="10" />
-      <File FileName="Assets/Scripts/Inventory.cs" Line="5" Column="33" />
-      <File FileName="Assets/Scripts/World.cs" Line="88" Column="35" />
+      <File FileName="Assets/Scripts/Inventory.cs" Line="129" Column="14" />
+      <File FileName="Assets/Scripts/World.cs" Line="75" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -22,7 +22,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="fcb9b9f7-132b-4ab7-b95f-58d5e0ce7a5f" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="8f5ee4ab-e232-400f-8450-aea992a04dab" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
