@@ -1,17 +1,18 @@
 ﻿<Properties StartupConfiguration="{6D84558F-D623-0CB4-722B-FC6D96BDFC85}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SwayMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Enemy.cs">
     <Files>
-      <File FileName="Assets/Scripts/SwayMovement.cs" Line="24" Column="133" />
-      <File FileName="Assets/Scripts/VoxelData.cs" />
-      <File FileName="Assets/Scripts/Chunk.cs" />
+      <File FileName="Assets/Scripts/SwayMovement.cs" Line="35" Column="14" />
+      <File FileName="Assets/Scripts/MiniBlock.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/VoxelData.cs" Line="8" Column="40" />
+      <File FileName="Assets/Scripts/Chunk.cs" Line="135" Column="10" />
       <File FileName="Assets/Scripts/BiomeAttribute.cs" />
       <File FileName="Assets/Scripts/Noise.cs" />
-      <File FileName="Assets/Scripts/Player.cs" />
+      <File FileName="Assets/Scripts/Player.cs" Line="76" Column="33" />
       <File FileName="Assets/Scripts/MouseLook.cs" />
       <File FileName="Assets/Scripts/Structure.cs" />
-      <File FileName="Assets/Scripts/MiniBlock.cs" />
-      <File FileName="Assets/Scripts/Inventory.cs" Line="129" Column="14" />
-      <File FileName="Assets/Scripts/World.cs" />
+      <File FileName="Assets/Scripts/Inventory.cs" Line="190" Column="14" />
+      <File FileName="Assets/Scripts/World.cs" Line="195" Column="96" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="29" Column="1" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -23,7 +24,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="40ab23e2-dcbd-47e3-baa0-30c0fe8bb9f8" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="a3da2347-1a14-4eba-9ff8-e9d9b5aa95a8" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

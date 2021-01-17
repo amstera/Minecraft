@@ -192,7 +192,7 @@ public class World : MonoBehaviour
             _chunksToUpdate.RemoveAt(0);
         }
 
-        SpawnPosition = new Vector3(VoxelData.WorldSizeInBlocks / 2, VoxelData.ChunkHeight - 50, VoxelData.WorldSizeInBlocks / 2);
+        SpawnPosition = new Vector3(VoxelData.WorldSizeInBlocks / 2, VoxelData.ChunkHeight - 60, VoxelData.WorldSizeInBlocks / 2);
         Player.position = SpawnPosition;
     }
 
@@ -248,7 +248,12 @@ public class World : MonoBehaviour
 
     private bool IsChunkInWorld(int x, int z)
     {
-        return x > 0 && x < VoxelData.WorldSizeInChunks - 1 && z > 0 && z < VoxelData.WorldSizeInChunks - 1;
+        if (x > 0 && x < VoxelData.WorldSizeInChunks - 1 && z > 0 && z < VoxelData.WorldSizeInChunks - 1)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     private bool IsVoxelInWorld(Vector3 pos)
@@ -264,7 +269,7 @@ public class World : MonoBehaviour
     public bool CheckForVoxel(Vector3 pos)
     {
         ChunkCoord chunkCoord = new ChunkCoord(pos);
-        if (IsVoxelInWorld(pos))
+        if (!IsChunkInWorld(chunkCoord.x, chunkCoord.z) || pos.y < 0 || pos.y > VoxelData.ChunkHeight)
         {
             return false;
         }

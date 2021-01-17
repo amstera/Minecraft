@@ -7,10 +7,16 @@ public class SwayMovement : MonoBehaviour
     public float SmoothAmount;
 
     private Vector3 _initialPosition;
+    private Animator _animator;
 
     void Start()
     {
         _initialPosition = transform.localPosition;
+        _animator = GetComponentInParent<Animator>();
+        if (_animator != null)
+        {
+            _animator.enabled = false;
+        }
     }
 
     void Update()
@@ -22,5 +28,14 @@ public class SwayMovement : MonoBehaviour
 
         Vector3 finalPos = new Vector3(movementX, movementY, 0);
         transform.localPosition = Vector3.Lerp(transform.localPosition, finalPos + _initialPosition, Time.deltaTime * SmoothAmount);
+
+        if (_animator != null && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
+        {
+            if (!_animator.enabled)
+            {
+                _animator.enabled = true;
+            }
+            _animator.Play("Using", -1, 0f);
+        }
     }
 }

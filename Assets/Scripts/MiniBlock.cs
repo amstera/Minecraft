@@ -3,6 +3,7 @@ using UnityEngine;
 public class MiniBlock : MonoBehaviour
 {
     public Blocks Block;
+    public bool IsRotating = true;
 
     void Start()
     {
@@ -11,7 +12,10 @@ public class MiniBlock : MonoBehaviour
 
     void Update()
     {
-        transform.Rotate(Vector3.up, 100 * Time.deltaTime, Space.Self);
+        if (IsRotating)
+        {
+            transform.Rotate(Vector3.up, 100 * Time.deltaTime, Space.Self);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

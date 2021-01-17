@@ -9,6 +9,12 @@ public class Inventory : MonoBehaviour
     public GameObject Selected;
     public GameObject Toolbelt;
 
+    public GameObject Arm;
+    public GameObject ArmGroup;
+    public GameObject DirtBlock;
+    public GameObject StoneBlock;
+    public GameObject WoodBlock;
+
     public Texture DirtTexture;
     public Texture WoodTexture;
     public Texture StoneTexture;
@@ -16,6 +22,8 @@ public class Inventory : MonoBehaviour
     private List<Blocks> _blocks = new List<Blocks>();
     private List<ToolbeltRef> _toolbeltRefs = new List<ToolbeltRef>();
     private int _selectedIndex;
+    private int _previouslySelectedIndex;
+    private int _previousInventoryCount;
 
     void Start()
     {
@@ -166,6 +174,40 @@ public class Inventory : MonoBehaviour
                 image.gameObject.SetActive(false);
                 text.gameObject.SetActive(false);
             }
+        }
+
+        if (inventory.Count == 0)
+        {
+            ResetHoldingItem();
+            Arm.SetActive(true);
+        }
+        else if (_previouslySelectedIndex != _selectedIndex || _previousInventoryCount == 0)
+        {
+            ResetHoldingItem();
+            if (inventory[_selectedIndex].Block == Blocks.Dirt)
+            {
+                DirtBlock.SetActive(true);
+            }
+            else if (inventory[_selectedIndex].Block == Blocks.Stone)
+            {
+                StoneBlock.SetActive(true);
+            }
+            else if (inventory[_selectedIndex].Block == Blocks.Wood)
+            {
+                WoodBlock.SetActive(true);
+            }
+        }
+
+        _previouslySelectedIndex = _selectedIndex;
+        _previousInventoryCount = inventory.Count;
+    }
+
+    private void ResetHoldingItem()
+    {
+        Arm.SetActive(false);
+        foreach (Transform child in ArmGroup.transform)
+        {
+            child.gameObject.SetActive(false);
         }
     }
 

@@ -129,7 +129,12 @@ public class Chunk
 
     private bool IsVoxelInChunk(int x, int y, int z)
     {
-        return !(x < 0 || x > VoxelData.ChunkWidth - 1 || y < 0 || y > VoxelData.ChunkHeight - 1 || z < 0 || z > VoxelData.ChunkWidth - 1);
+        if (x < 0 || x > VoxelData.ChunkWidth - 1 || y < 0 || y > VoxelData.ChunkHeight - 1 || z < 0 || z > VoxelData.ChunkWidth - 1)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     private bool CheckVoxel(Vector3 pos)

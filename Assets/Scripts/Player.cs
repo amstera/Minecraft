@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     public float WalkSpeed = 3f;
     public float SprintSpeed = 6f;
     public float JumpForce = 5f;
-    public float Gravity = -9.8f;
+    public float Gravity = -9.81f;
 
     public float PlayerWidth = 0.15f;
     public float CheckIncrement = 0.075f;
@@ -36,7 +36,6 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         CalculateVelocity();
         if (_jumpRequest)
         {
@@ -44,7 +43,6 @@ public class Player : MonoBehaviour
         }
 
         transform.Translate(_velocity, Space.World);
-
     }
 
     private void Update()
