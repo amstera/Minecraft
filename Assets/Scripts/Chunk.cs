@@ -7,6 +7,7 @@ public class Chunk
 
     private MeshRenderer _meshRenderer;
     private MeshFilter _meshFilter;
+    private MeshCollider _meshCollider;
     private GameObject _chunkObject;
 
     private int _vertexIndex;
@@ -57,6 +58,7 @@ public class Chunk
         _meshFilter = _chunkObject.AddComponent<MeshFilter>();
         _meshRenderer = _chunkObject.AddComponent<MeshRenderer>();
         _meshRenderer.material = _world.Material;
+        _meshCollider = _chunkObject.AddComponent<MeshCollider>();
 
         PopulateVoxelMap();
 
@@ -185,6 +187,7 @@ public class Chunk
         mesh.RecalculateNormals();
 
         _meshFilter.mesh = mesh;
+        _meshCollider.sharedMesh = _meshFilter.mesh;
     }
 
     private void ClearMeshData()
