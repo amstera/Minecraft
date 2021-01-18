@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -11,6 +12,11 @@ public class Player : MonoBehaviour
     private Transform _cam;
     public Transform HighlightBlock;
     public Transform PlaceBlock;
+    public GameObject Hearts;
+
+    public Texture FullHeart;
+    public Texture HalfHeart;
+    public Texture EmptyHeart;
 
     public float WalkSpeed = 3f;
     public float SprintSpeed = 6f;
@@ -21,20 +27,24 @@ public class Player : MonoBehaviour
     public float CheckIncrement = 0.075f;
     public float Reach = 8;
 
+    public int Health = 20;
+
     private float _horizontal;
     private float _vertical;
     private Vector3 _velocity;
     private float _verticalMomentum;
     private bool _jumpRequest;
+    private float _lastDamageTime;
+    private float _lastHealthRegenerationTime;
 
-    private void Start()
+    void Start()
     {
         _world = GameObject.Find("World").GetComponent<World>();
         _cam = Camera.main.transform;
         Cursor.lockState = CursorLockMode.Locked;
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         CalculateVelocity();
         if (_jumpRequest)
@@ -43,12 +53,33 @@ public class Player : MonoBehaviour
         }
 
         transform.Translate(_velocity, Space.World);
+        DrawHealth();
     }
 
-    private void Update()
+    void Update()
     {
         GetPlayerInputs();
         PlaceCursorBlock();
+
+        if (Health < 20 && Health > 0 && Time.time - _lastHealthRegenerationTime >= 4)
+        {
+            Health += 1;
+            _lastHealthRegenerationTime = Time.time;
+            DrawHealth();
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (Time.time - _lastDamageTime > 1)
+        {
+            _jumpRequest = true;
+            Health -= damage;
+            Health = Mathf.Clamp(Health, 0, 20);
+            _lastDamageTime = Time.time;
+            _lastHealthRegenerationTime = Time.time;
+            DrawHealth();
+        }
     }
 
     void Jump()
@@ -165,6 +196,28 @@ public class Player : MonoBehaviour
         PlaceBlock.gameObject.SetActive(false);
     }
 
+    private void DrawHealth()
+    {
+        int i = 1;
+        foreach (Transform child in Hearts.transform)
+        {
+            if (Health >= (i * 2))
+            {
+                child.GetComponent<RawImage>().texture = FullHeart;
+            }
+            else if (Health <= (i - 1) * 2)
+            {
+                child.GetComponent<RawImage>().texture = EmptyHeart;
+            }
+            else
+            {
+                child.GetComponent<RawImage>().texture = HalfHeart;
+            }
+
+            i++;
+        }
+    }
+
     private float CheckDownSpeed(float downSpeed)
     {
         if (
@@ -269,5 +322,4 @@ public class Player : MonoBehaviour
         }
 
     }
-
 }

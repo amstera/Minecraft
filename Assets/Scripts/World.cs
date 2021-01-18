@@ -8,6 +8,7 @@ public class World : MonoBehaviour
     public BiomeAttribute Biome;
     public Transform Player;
     public Vector3 SpawnPosition;
+    public float MobSpawnTimeSeconds = 10;
 
     public Material Material;
     public BlockType[] BlockTypes;
@@ -16,6 +17,8 @@ public class World : MonoBehaviour
     public GameObject WoodBlock;
     public GameObject StoneBlock;
     public GameObject BlockParticles;
+
+    public List<GameObject> Mobs;
 
     private Chunk[,] _chunks = new Chunk[VoxelData.WorldSizeInChunks, VoxelData.WorldSizeInChunks];
     private List<ChunkCoord> _activeChunks = new List<ChunkCoord>();
@@ -31,6 +34,7 @@ public class World : MonoBehaviour
         Random.InitState(Seed);
 
         GenerateWorld();
+        StartCoroutine(SpawnMobs());
         _playerLastChunkCoord = GetChunkCoordFromVector3(Player.transform.position);
     }
 
@@ -347,6 +351,15 @@ public class World : MonoBehaviour
         }
 
         return (byte)voxelValue;
+    }
+
+    private IEnumerator SpawnMobs()
+    {
+        yield return new WaitForSeconds(MobSpawnTimeSeconds);
+        GameObject mob = Mobs[Random.Range(0, Mobs.Count)];
+        Instantiate(mob, new Vector3(Player.transform.position.x - (transform.forward.x * 5f), Mathf.Max(VoxelData.ChunkHeight - 60, transform.position.y), Player.transform.position.z - (transform.forward.z * 5f)), Quaternion.identity);
+
+        StartCoroutine(SpawnMobs());
     }
 
 }

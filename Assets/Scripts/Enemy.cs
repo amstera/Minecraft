@@ -14,15 +14,18 @@ public class Enemy : MonoBehaviour
     public float JumpForce = 5f;
     public float Gravity = -9.81f;
 
+    public int Health = 20;
+    public int Damage = 3;
+
     private bool _jumpRequest;
 
-    private void Start()
+    void Start()
     {
         _player = GameObject.Find("Player");
         _rigidbody = GetComponent<Rigidbody>();
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
         CalculateVelocity();
         if (_jumpRequest)
@@ -45,12 +48,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Update()
+    void Update()
     {
         GetEnemyRotation();
-        if (Vector3.Distance(transform.position, _player.transform.position) > 100)
+        if (Vector3.Distance(transform.position, _player.transform.position) >= 100)
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.name == "Player")
+        {
+            _player.GetComponent<Player>().TakeDamage(Damage);
         }
     }
 

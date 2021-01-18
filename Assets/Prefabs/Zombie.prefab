@@ -237,6 +237,9 @@ MonoBehaviour:
   IsGrounded: 0
   Speed: 2
   JumpForce: 5
+  Gravity: -9.81
+  Health: 20
+  Damage: 3
 --- !u!65 &-4248319147391825403
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -248,7 +251,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 16.65, y: 25.2, z: 7.84}
+  m_Size: {x: 16.65, y: 25.2, z: 10.4}
   m_Center: {x: -20, y: 12.8, z: 2.63}
 --- !u!54 &6643838046118521181
 Rigidbody:
