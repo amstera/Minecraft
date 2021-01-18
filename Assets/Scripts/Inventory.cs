@@ -14,10 +14,12 @@ public class Inventory : MonoBehaviour
     public GameObject DirtBlock;
     public GameObject StoneBlock;
     public GameObject WoodBlock;
+    public GameObject Sword;
 
     public Texture DirtTexture;
     public Texture WoodTexture;
     public Texture StoneTexture;
+    public Texture SwordTexture;
 
     private List<Blocks> _blocks = new List<Blocks>();
     private List<ToolbeltRef> _toolbeltRefs = new List<ToolbeltRef>();
@@ -157,6 +159,10 @@ public class Inventory : MonoBehaviour
                 {
                     texture = StoneTexture;
                 }
+                else if (inventory[i].Block == Blocks.Sword)
+                {
+                    texture = SwordTexture;
+                }
 
                 image.texture = texture;
                 if (inventory[i].Count > 1)
@@ -196,6 +202,10 @@ public class Inventory : MonoBehaviour
             {
                 WoodBlock.SetActive(true);
             }
+            else if (inventory[_selectedIndex].Block == Blocks.Sword)
+            {
+                Sword.SetActive(true);
+            }
         }
 
         _previouslySelectedIndex = _selectedIndex;
@@ -213,7 +223,14 @@ public class Inventory : MonoBehaviour
 
     private List<InventoryBlock> GetInventory()
     {
-        List<InventoryBlock> inventory = new List<InventoryBlock>();
+        List<InventoryBlock> inventory = new List<InventoryBlock>
+        {
+            new InventoryBlock
+            {
+                Block = Blocks.Sword,
+                Count = 1
+            }
+        };
 
         IEnumerable<IGrouping<Blocks, Blocks>> orderedBlocks = _blocks.GroupBy(b => b);
         foreach (IGrouping<Blocks, Blocks> block in orderedBlocks)

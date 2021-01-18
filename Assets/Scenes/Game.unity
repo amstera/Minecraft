@@ -750,9 +750,11 @@ MonoBehaviour:
   DirtBlock: {fileID: 1687237036}
   StoneBlock: {fileID: 1120626648}
   WoodBlock: {fileID: 907161779}
+  Sword: {fileID: 474130013694795092}
   DirtTexture: {fileID: 2800000, guid: 64282e67cb4394b35af5a9b120e909aa, type: 3}
   WoodTexture: {fileID: 2800000, guid: 12b31a328c09b4812b3dee4925145b93, type: 3}
   StoneTexture: {fileID: 2800000, guid: 67a2aca4486744f86a2be097a3c0def6, type: 3}
+  SwordTexture: {fileID: 2800000, guid: f1f9f12828c7f43cbae810877e37f8de, type: 3}
 --- !u!4 &154953672
 Transform:
   m_ObjectHideFlags: 0
@@ -1692,6 +1694,7 @@ MonoBehaviour:
   Amount: 0.1
   MaxAmount: 1
   SmoothAmount: 10
+  AnimationName: Using
 --- !u!1 &649748315
 GameObject:
   m_ObjectHideFlags: 0
@@ -2600,6 +2603,7 @@ MonoBehaviour:
   Amount: 0.1
   MaxAmount: 1
   SmoothAmount: 10
+  AnimationName: Using
 --- !u!1 &913730678
 GameObject:
   m_ObjectHideFlags: 0
@@ -3137,6 +3141,7 @@ MonoBehaviour:
   Amount: 0.1
   MaxAmount: 1
   SmoothAmount: 10
+  AnimationName: Using
 --- !u!1 &1147859402
 GameObject:
   m_ObjectHideFlags: 0
@@ -3240,6 +3245,7 @@ Transform:
   - {fileID: 1687237035}
   - {fileID: 1120626649}
   - {fileID: 907161780}
+  - {fileID: 999695835544504302}
   m_Father: {fileID: 963194228}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3832,6 +3838,7 @@ MonoBehaviour:
   Amount: 0.1
   MaxAmount: 1
   SmoothAmount: 10
+  AnimationName: Using
 --- !u!1 &1734531978
 GameObject:
   m_ObjectHideFlags: 0
@@ -4742,3 +4749,90 @@ LightingSettings:
   m_PVRFilteringAtrousPositionSigmaDirect: 0.5
   m_PVRFilteringAtrousPositionSigmaIndirect: 2
   m_PVRFilteringAtrousPositionSigmaAO: 1
+--- !u!1 &474130013694795092 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5693357631453746491, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+  m_PrefabInstance: {fileID: 5302614888901658735}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &474130013694795093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474130013694795092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5218564618974a9aa332f12ee41fb11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Amount: 0.1
+  MaxAmount: 1
+  SmoothAmount: 10
+  AnimationName: Sword
+--- !u!4 &999695835544504302 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+  m_PrefabInstance: {fileID: 5302614888901658735}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5302614888901658735
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1148529576}
+    m_Modifications:
+    - target: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.23937762
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.6458919
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.24190025
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.5324671
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.6160087
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.52772766
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 65.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 141
+      objectReference: {fileID: 0}
+    - target: {fileID: 4920479690700820353, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -107.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693357631453746491, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_Name
+      value: Diamond Sword
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693357631453746491, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 2edf99b8bb94843f9ae693d167ab51e1, type: 3}

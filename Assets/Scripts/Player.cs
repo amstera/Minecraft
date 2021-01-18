@@ -142,10 +142,15 @@ public class Player : MonoBehaviour
             _jumpRequest = true;
         }
 
-        if (HighlightBlock.gameObject.activeSelf)
+        //Destroy block
+        if (Input.GetMouseButtonDown(0))
         {
-            //Destroy block
-            if (Input.GetMouseButtonDown(0))
+            Blocks selectedBlock = Inventory.Instance.GetSelectedBlock();
+            if (selectedBlock == Blocks.Sword)
+            {
+                SwingSword();
+            }
+            if (HighlightBlock.gameObject.activeSelf)
             {
                 Chunk chunk = _world.GetChunkFromVector3(HighlightBlock.position);
                 Blocks block = chunk.GetBlockFromGlobalVector3(HighlightBlock.position);
@@ -155,16 +160,20 @@ public class Player : MonoBehaviour
                     _world.GenerateBlock(block, HighlightBlock.position);
                 }
             }
+        }
 
-            //Create block
-            if (Input.GetMouseButtonDown(1))
+        //Create block
+        if (Input.GetMouseButtonDown(1))
+        {
+            Blocks selectedBlock = Inventory.Instance.GetSelectedBlock();
+            if (selectedBlock > Blocks.Empty && HighlightBlock.gameObject.activeSelf)
             {
-                Blocks selectedBlock = Inventory.Instance.GetSelectedBlock();
-                if (selectedBlock != Blocks.Empty)
-                {
-                    _world.GetChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, selectedBlock);
-                    Inventory.Instance.Remove(selectedBlock);
-                }
+                _world.GetChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, selectedBlock);
+                Inventory.Instance.Remove(selectedBlock);
+            }
+            else if (selectedBlock == Blocks.Sword)
+            {
+                SwingSword();
             }
         }
     }
@@ -215,6 +224,21 @@ public class Player : MonoBehaviour
             }
 
             i++;
+        }
+    }
+
+    private void SwingSword()
+    {
+        int layerMask = LayerMask.GetMask("Enemy");
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 8, layerMask))
+        {
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(_cam.transform.forward, 7);
+            }
         }
     }
 

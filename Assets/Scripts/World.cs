@@ -34,7 +34,10 @@ public class World : MonoBehaviour
         Random.InitState(Seed);
 
         GenerateWorld();
-        StartCoroutine(SpawnMobs());
+        if (MobSpawnTimeSeconds > 0)
+        {
+            StartCoroutine(SpawnMobs());
+        }
         _playerLastChunkCoord = GetChunkCoordFromVector3(Player.transform.position);
     }
 
@@ -465,6 +468,7 @@ public class VoxelMod
 
 public enum Blocks
 {
+    Sword = -1,
     Empty = 0,
     Bedrock = 1,
     Stone = 2,
