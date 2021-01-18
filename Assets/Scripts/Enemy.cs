@@ -86,7 +86,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void TakeDamage(Vector3 dir, int damage)
+    public void TakeDamage(Vector3 dir, Vector3 hitPoint, int damage)
     {
         if (IsDead)
         {
@@ -102,7 +102,7 @@ public class Enemy : MonoBehaviour
         Health -= damage;
         if (Health <= 0)
         {
-            Die(dir);
+            Die(dir, hitPoint);
             IsDead = true;
             Destroy(gameObject, 5);
         }
@@ -143,10 +143,10 @@ public class Enemy : MonoBehaviour
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
     }
 
-    private void Die(Vector3 dir)
+    private void Die(Vector3 dir, Vector3 hitPoint)
     {
         GetComponent<Animator>().enabled = false;
-        GameObject blood = Instantiate(Blood, new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z - 0.5f), Quaternion.identity);
+        GameObject blood = Instantiate(Blood, hitPoint, Quaternion.identity);
         Destroy(blood, 2);
         foreach (Transform child in transform)
         {

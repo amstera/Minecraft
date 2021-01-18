@@ -232,12 +232,12 @@ public class Player : MonoBehaviour
         int layerMask = LayerMask.GetMask("Enemy");
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, 8, layerMask))
+        if (Physics.Raycast(ray, out hit, 4, layerMask))
         {
             Enemy enemy = hit.collider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(_cam.transform.forward, 7);
+                enemy.TakeDamage(_cam.transform.forward, hit.point, 7);
             }
         }
     }
