@@ -9,6 +9,12 @@ public class SwayMovement : MonoBehaviour
 
     private Vector3 _initialPosition;
     private Animator[] _animators;
+    private Player _player;
+
+    void Start()
+    {
+        _player = GameObject.Find("Player").GetComponent<Player>();
+    }
 
     void OnEnable()
     {
@@ -22,6 +28,11 @@ public class SwayMovement : MonoBehaviour
 
     void Update()
     {
+        if (_player.IsDead)
+        {
+            return;
+        }
+
         float movementX = Input.GetAxis("Mouse X") * Amount;
         float movementY = Input.GetAxis("Mouse Y") * Amount;
         movementX = Mathf.Clamp(movementX, -MaxAmount, MaxAmount);

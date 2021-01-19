@@ -14,15 +14,22 @@ public class MouseLook : MonoBehaviour
     Quaternion originalCameraRotation;
     Quaternion originalPlayerRotation;
 
+    private Player _player;
+
     void Start()
     {
+        _player = GetComponent<Player>();
         originalCameraRotation = Camera.main.transform.localRotation;
         originalPlayerRotation = transform.localRotation;
-        Cursor.lockState = CursorLockMode.Locked;
     }
 
     void Update()
     {
+        if (_player.IsDead)
+        {
+            return;
+        }
+
         if (axes == RotationAxes.MouseXAndY)
         {
             rotationX += Input.GetAxis("Mouse X") * sensitivityX;

@@ -6,18 +6,21 @@ public class Player : MonoBehaviour
 {
     public bool IsGrounded;
     public bool IsSprinting;
+    public bool IsDead;
 
     private World _world;
     private Transform _cam;
     public Transform HighlightBlock;
     public Transform PlaceBlock;
     public GameObject Hearts;
+    public GameObject DeathScreen;
 
     public Texture FullHeart;
     public Texture HalfHeart;
     public Texture EmptyHeart;
 
     public List<AudioClip> BlockSounds;
+    public AudioClip DeathSound;
     public AudioSource BlockAudioSource;
     public AudioSource PainAudioSource;
 
@@ -49,6 +52,11 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (IsDead)
+        {
+            return;
+        }
+
         CalculateVelocity();
         if (_jumpRequest)
         {
@@ -61,6 +69,11 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (IsDead)
+        {
+            return;
+        }
+
         GetPlayerInputs();
         PlaceCursorBlock();
 
@@ -74,12 +87,22 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (IsDead)
+        {
+            return;
+        }
+
         if (Time.time - _lastDamageTime > 1)
         {
             PainAudioSource.Play();
             _jumpRequest = true;
             Health -= damage;
             Health = Mathf.Clamp(Health, 0, 20);
+            if (Health <= 0)
+            {
+                Die();
+            }
+
             _lastDamageTime = Time.time;
             _lastHealthRegenerationTime = Time.time;
             DrawHealth();
@@ -100,7 +123,6 @@ public class Player : MonoBehaviour
         {
             _verticalMomentum += Time.fixedDeltaTime * Gravity;
         }
-
 
         float speedMultiplier = IsSprinting ? SprintSpeed : WalkSpeed;
         _velocity = ((transform.forward * _vertical) + (transform.right * _horizontal)) * Time.fixedDeltaTime * speedMultiplier;
@@ -252,6 +274,18 @@ public class Player : MonoBehaviour
     {
         BlockAudioSource.clip = BlockSounds[(int)block - 2];
         BlockAudioSource.Play();
+    }
+
+    private void Die()
+    {
+        IsDead = true;
+        PainAudioSource.clip = DeathSound;
+        PainAudioSource.Play();
+        Inventory.Instance.EmptyInventory();
+
+        _cam.Rotate(new Vector3(0, 90, 0));
+        DeathScreen.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private float CheckDownSpeed(float downSpeed)

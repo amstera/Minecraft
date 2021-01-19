@@ -90,6 +90,12 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void EmptyInventory()
+    {
+        _blocks = new List<Blocks>();
+        UpdateInventory(true);
+    }
+
     public Blocks GetSelectedBlock()
     {
         List<InventoryBlock> inventory = GetInventory();
@@ -121,9 +127,9 @@ public class Inventory : MonoBehaviour
         UpdateInventory();
     }
 
-    private void UpdateInventory()
+    private void UpdateInventory(bool emptyInventory = false)
     {
-        List<InventoryBlock> inventory = GetInventory();
+        List<InventoryBlock> inventory = GetInventory(emptyInventory);
 
         if (_selectedIndex > 0 && inventory.Count <= _selectedIndex)
         {
@@ -224,9 +230,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private List<InventoryBlock> GetInventory()
+    private List<InventoryBlock> GetInventory(bool emptyInventory = false)
     {
-        List<InventoryBlock> inventory = new List<InventoryBlock>
+        List<InventoryBlock> inventory = emptyInventory ? new List<InventoryBlock>() : new List<InventoryBlock>
         {
             new InventoryBlock
             {

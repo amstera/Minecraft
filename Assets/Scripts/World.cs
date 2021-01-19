@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class World : MonoBehaviour
 {
@@ -361,6 +362,11 @@ public class World : MonoBehaviour
         return (byte)voxelValue;
     }
 
+    public void ResetWorld()
+    {
+        SceneManager.LoadScene(0);
+    }
+
     private IEnumerator SpawnMobs()
     {
         yield return new WaitForSeconds(MobSpawnTimeSeconds);
@@ -369,7 +375,6 @@ public class World : MonoBehaviour
 
         StartCoroutine(SpawnMobs());
     }
-
 }
 
 [System.Serializable]

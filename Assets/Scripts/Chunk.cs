@@ -109,7 +109,7 @@ public class Chunk
 
             if (!IsVoxelInChunk((int)currentVoxel.x, (int)currentVoxel.y, (int)currentVoxel.z))
             {
-                _world.GetChunkFromVector3(voxel + Position).UpdateChunk();
+                _world.GetChunkFromVector3(currentVoxel + Position).UpdateChunk();
             }
         }
     }
@@ -201,7 +201,7 @@ public class Chunk
 
     private void UpdateMeshData(Vector3 pos)
     {
-        for (int p = 0; p < 6; p++)
+        for (int p = 0; p < 6; p++) 
         {
             if (!CheckVoxel(pos + VoxelData.FaceChecks[p]))
             {
