@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -5,6 +6,9 @@ public class Enemy : MonoBehaviour
     public bool IsGrounded;
 
     public GameObject Blood;
+    public EnemyType Type;
+    public List<AudioClip> Sounds;
+    public AudioSource EnemyAudioSource;
 
     private GameObject _player;
     private Rigidbody _rigidbody;
@@ -12,6 +16,7 @@ public class Enemy : MonoBehaviour
     private float _verticalMomentum;
     private Vector3 _previousPosition;
     private MeshRenderer[] _meshRenderers;
+    private float _timeSinceLastSpoke;
 
     public float Speed = 2f;
     public float JumpForce = 5f;
@@ -70,20 +75,22 @@ public class Enemy : MonoBehaviour
             return;
         }
 
+        if (Time.time - _timeSinceLastSpoke > 5)
+        {
+            EnemyAudioSource.clip = Sounds[0];
+            EnemyAudioSource.Play();
+            _timeSinceLastSpoke = Time.time;
+        }
+
+        if (Type == EnemyType.Zombie)
+        {
+            if (Vector3.Distance(_player.transform.position, transform.position) < 1f)
+            {
+                _player.GetComponent<Player>().TakeDamage(Damage);
+            }
+        }
+
         GetEnemyRotation();
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (IsDead)
-        {
-            return;
-        }
-
-        if (collision.collider.name == "Player")
-        {
-            _player.GetComponent<Player>().TakeDamage(Damage);
-        }
     }
 
     public void TakeDamage(Vector3 dir, Vector3 hitPoint, int damage)
@@ -92,6 +99,9 @@ public class Enemy : MonoBehaviour
         {
             return;
         }
+
+        EnemyAudioSource.clip = Sounds[1];
+        EnemyAudioSource.Play();
 
         _rigidbody.AddForce(dir * 8f, ForceMode.Impulse);
         foreach (MeshRenderer meshRenderer in _meshRenderers)
@@ -145,6 +155,8 @@ public class Enemy : MonoBehaviour
 
     private void Die(Vector3 dir, Vector3 hitPoint)
     {
+        EnemyAudioSource.clip = Sounds[2];
+        EnemyAudioSource.Play();
         GetComponent<Animator>().enabled = false;
         GameObject blood = Instantiate(Blood, hitPoint, Quaternion.identity);
         Destroy(blood, 2);
@@ -158,4 +170,11 @@ public class Enemy : MonoBehaviour
             }
         }
     }
+}
+
+public enum EnemyType
+{
+    None = 0,
+    Zombie = 1,
+    Creeper = 2
 }

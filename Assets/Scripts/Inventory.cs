@@ -21,6 +21,8 @@ public class Inventory : MonoBehaviour
     public Texture StoneTexture;
     public Texture SwordTexture;
 
+    public AudioSource PickUpItemAS;
+
     private List<Blocks> _blocks = new List<Blocks>();
     private List<ToolbeltRef> _toolbeltRefs = new List<ToolbeltRef>();
     private int _selectedIndex;
@@ -71,6 +73,7 @@ public class Inventory : MonoBehaviour
     {
         if (block != Blocks.Empty)
         {
+            PickUpItemAS.Play();
             _blocks.Add(block);
 
             UpdateInventory();

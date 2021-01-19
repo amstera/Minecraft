@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +16,10 @@ public class Player : MonoBehaviour
     public Texture FullHeart;
     public Texture HalfHeart;
     public Texture EmptyHeart;
+
+    public List<AudioClip> BlockSounds;
+    public AudioSource BlockAudioSource;
+    public AudioSource PainAudioSource;
 
     public float WalkSpeed = 3f;
     public float SprintSpeed = 6f;
@@ -73,6 +76,7 @@ public class Player : MonoBehaviour
     {
         if (Time.time - _lastDamageTime > 1)
         {
+            PainAudioSource.Play();
             _jumpRequest = true;
             Health -= damage;
             Health = Mathf.Clamp(Health, 0, 20);
@@ -156,6 +160,7 @@ public class Player : MonoBehaviour
                 Blocks block = chunk.GetBlockFromGlobalVector3(HighlightBlock.position);
                 if (block != Blocks.Empty && block != Blocks.Bedrock)
                 {
+                    PlayBlockSound(block);
                     chunk.EditVoxel(HighlightBlock.position, Blocks.Empty);
                     _world.GenerateBlock(block, HighlightBlock.position);
                 }
@@ -168,6 +173,7 @@ public class Player : MonoBehaviour
             Blocks selectedBlock = Inventory.Instance.GetSelectedBlock();
             if (selectedBlock > Blocks.Empty && HighlightBlock.gameObject.activeSelf)
             {
+                PlayBlockSound(selectedBlock);
                 _world.GetChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, selectedBlock);
                 Inventory.Instance.Remove(selectedBlock);
             }
@@ -240,6 +246,12 @@ public class Player : MonoBehaviour
                 enemy.TakeDamage(_cam.transform.forward, hit.point, 7);
             }
         }
+    }
+
+    private void PlayBlockSound(Blocks block)
+    {
+        BlockAudioSource.clip = BlockSounds[(int)block - 2];
+        BlockAudioSource.Play();
     }
 
     private float CheckDownSpeed(float downSpeed)

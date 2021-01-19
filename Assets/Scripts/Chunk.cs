@@ -55,6 +55,7 @@ public class Chunk
         _chunkObject = new GameObject();
         _chunkObject.transform.SetParent(_world.transform);
         _chunkObject.transform.position = new Vector3(Coord.x * VoxelData.ChunkWidth, 0, Coord.z * VoxelData.ChunkWidth);
+        _chunkObject.name = "Chunk " + Coord.x + ", " + Coord.z;
         _meshFilter = _chunkObject.AddComponent<MeshFilter>();
         _meshRenderer = _chunkObject.AddComponent<MeshRenderer>();
         _meshRenderer.material = _world.Material;

@@ -265,7 +265,12 @@ public class World : MonoBehaviour
 
     private bool IsVoxelInWorld(Vector3 pos)
     {
-        return pos.x < 0 || pos.x > VoxelData.WorldSizeInBlocks - 1 || pos.y < 0 || pos.y > VoxelData.ChunkHeight - 1 || pos.z < 0 || pos.z > VoxelData.WorldSizeInBlocks - 1;
+        if (pos.x >= 0 && pos.x < VoxelData.WorldSizeInBlocks && pos.y >= 0 && pos.y < VoxelData.ChunkHeight && pos.z >= 0 && pos.z < VoxelData.WorldSizeInBlocks)
+        {
+            return true;
+        }
+
+        return false;
     }
 
     public bool CheckForVoxel(float x, float y, float z)
@@ -292,7 +297,7 @@ public class World : MonoBehaviour
     {
         int yPos = Mathf.FloorToInt(pos.y);
 
-        if (IsVoxelInWorld(pos))
+        if (!IsVoxelInWorld(pos))
         {
             return (byte)Blocks.Empty;
         }
