@@ -1079,11 +1079,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c79a9a1a973844298196bb25fe14496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Seed: 2425121
+  Seed: 0
   Biome: {fileID: 11400000, guid: aa479baeb218b4fb6a32a95846202729, type: 2}
   Player: {fileID: 1037752340}
   SpawnPosition: {x: 0, y: 0, z: 0}
-  MobSpawnTimeSeconds: 10
+  MobSpawnTimeSeconds: 12
   Material: {fileID: 2100000, guid: 222d4eba2dcc44e6bb1e3a4e7297fb8e, type: 2}
   BlockTypes:
   - blockName: Empty

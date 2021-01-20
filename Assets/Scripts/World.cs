@@ -311,7 +311,7 @@ public class World : MonoBehaviour
             return (byte)Blocks.Bedrock;
         }
 
-        int terrainHeight = Mathf.FloorToInt(Biome.TerrainHeight * Noise.Get2DPerlin(new Vector2(pos.x, pos.z), 0, Biome.TerrainScale)) + Biome.SolidGroundHeight;
+        int terrainHeight = Mathf.FloorToInt(Biome.TerrainHeight * Noise.Get2DPerlin(new Vector2(pos.x, pos.z), Seed, Biome.TerrainScale)) + Biome.SolidGroundHeight;
         Blocks voxelValue;
 
         //first pass
@@ -353,9 +353,9 @@ public class World : MonoBehaviour
 
         if (yPos == terrainHeight)
         {
-            if (Noise.Get2DPerlin(new Vector3(pos.x, pos.z), 0, Biome.TreeZoneScale) > Biome.TreeZoneThreshold)
+            if (Noise.Get2DPerlin(new Vector3(pos.x, pos.z), Seed, Biome.TreeZoneScale) > Biome.TreeZoneThreshold)
             {
-                if (Noise.Get2DPerlin(new Vector3(pos.x, pos.z), 0, Biome.TreePlacementScale) > Biome.TreePlacementThreshold)
+                if (Noise.Get2DPerlin(new Vector3(pos.x, pos.z), Seed, Biome.TreePlacementScale) > Biome.TreePlacementThreshold)
                 {
                     Structure.MakeTree(pos, _modifications, Biome.MinTreeHeight, Biome.MaxTreeHeight);
                 }
