@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,17 +7,21 @@ public class Enemy : MonoBehaviour
     public bool IsGrounded;
 
     public GameObject Blood;
+    public GameObject Explosion;
     public EnemyType Type;
     public List<AudioClip> Sounds;
     public AudioSource EnemyAudioSource;
 
     private GameObject _player;
+    private World _world;
     private Rigidbody _rigidbody;
     private Vector3 _velocity;
     private float _verticalMomentum;
     private Vector3 _previousPosition;
     private MeshRenderer[] _meshRenderers;
     private float _timeSinceLastSpoke;
+    private float _explosionTimer;
+    private Vector3 _localScale;
 
     public float Speed = 2f;
     public float JumpForce = 5f;
@@ -31,8 +36,10 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         _player = GameObject.Find("Player");
+        _world = GameObject.Find("World").GetComponent<World>();
         _rigidbody = GetComponent<Rigidbody>();
         _meshRenderers = GetComponentsInChildren<MeshRenderer>();
+        _localScale = transform.localScale;
     }
 
     void FixedUpdate()
@@ -75,7 +82,7 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        if (Time.time - _timeSinceLastSpoke > 5)
+        if (Type == EnemyType.Zombie && Time.time - _timeSinceLastSpoke > 5)
         {
             EnemyAudioSource.clip = Sounds[0];
             EnemyAudioSource.Play();
@@ -89,11 +96,33 @@ public class Enemy : MonoBehaviour
                 _player.GetComponent<Player>().TakeDamage(Damage);
             }
         }
+        else if (Type == EnemyType.Creeper)
+        {
+            if (Vector3.Distance(_player.transform.position, transform.position) < 3f)
+            {
+                if (!EnemyAudioSource.isPlaying)
+                {
+                    EnemyAudioSource.clip = Sounds[0];
+                    EnemyAudioSource.Play();
+                }
+                transform.localScale += new Vector3(0.075f, 0.075f, 0.075f) * Time.deltaTime;
+                _explosionTimer += Time.deltaTime;
+                if (_explosionTimer >= 1.5f)
+                {
+                    Explode();
+                }
+            }
+            else
+            {
+                _explosionTimer = 0;
+                transform.localScale = _localScale;
+            }
+        }
 
         GetEnemyRotation();
     }
 
-    public void TakeDamage(Vector3 dir, Vector3 hitPoint, int damage)
+    public void TakeDamage(Vector3 dir, Vector3? hitPoint, int damage)
     {
         if (IsDead)
         {
@@ -113,8 +142,6 @@ public class Enemy : MonoBehaviour
         if (Health <= 0)
         {
             Die(dir, hitPoint);
-            IsDead = true;
-            Destroy(gameObject, 5);
         }
     }
 
@@ -153,13 +180,17 @@ public class Enemy : MonoBehaviour
         transform.localEulerAngles = new Vector3(0, transform.localEulerAngles.y, 0);
     }
 
-    private void Die(Vector3 dir, Vector3 hitPoint)
+    private void Die(Vector3 dir, Vector3? hitPoint)
     {
+        IsDead = true;
         EnemyAudioSource.clip = Sounds[2];
         EnemyAudioSource.Play();
         GetComponent<Animator>().enabled = false;
-        GameObject blood = Instantiate(Blood, hitPoint, Quaternion.identity);
-        Destroy(blood, 2);
+        if (hitPoint != null)
+        {
+            GameObject blood = Instantiate(Blood, hitPoint.Value, Quaternion.identity);
+            Destroy(blood, 2);
+        }
         foreach (Transform child in transform)
         {
             BoxCollider boxCollider = child.gameObject.GetComponent<BoxCollider>();
@@ -167,6 +198,46 @@ public class Enemy : MonoBehaviour
             if (rb != null)
             {
                 rb.AddForce(dir * 10, ForceMode.Impulse);
+            }
+        }
+        Destroy(gameObject, 5);
+    }
+
+    private void Explode()
+    {
+        EnemyAudioSource.clip = Sounds[3];
+        EnemyAudioSource.Play();
+        GameObject explosion = Instantiate(Explosion, transform.position, Quaternion.identity);
+        Destroy(explosion, 3);
+        StartCoroutine(Explode(transform.position));
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 2.5f);
+        foreach (Collider col in colliders)
+        {
+            float distance = Vector3.Distance(transform.position, col.transform.position);
+            int damage = Mathf.FloorToInt(Damage * (1f / distance));
+            if (col.gameObject.GetComponent<Enemy>() != null)
+            {
+                col.gameObject.GetComponent<Enemy>().TakeDamage(transform.forward, null, damage);
+            }
+            else if (col.gameObject.GetComponent<Player>() != null)
+            {
+                col.gameObject.GetComponent<Player>().TakeDamage(damage);
+            }
+        }
+    }
+
+    private IEnumerator Explode(Vector3 position)
+    {
+        for (int x = -2; x < 2; x++)
+        {
+            for (int y = -2; y < 2; y++)
+            {
+                for (int z = -1; z < 2; z++)
+                {
+                    Vector3 pos = new Vector3(position.x + x, position.y - 1f + y, position.z + z);
+                    _world.GetChunkFromVector3(pos).EditVoxel(pos, Blocks.Empty);
+                }
+                yield return 0;
             }
         }
     }

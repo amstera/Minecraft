@@ -1148,6 +1148,7 @@ MonoBehaviour:
   BlockParticles: {fileID: 7953311011937868878, guid: 4912041ed400643d58460ca42eb8d48d, type: 3}
   Mobs:
   - {fileID: 4014877240985995467, guid: 0c14bf0ba091646a881bf439a41b1c2e, type: 3}
+  - {fileID: 1838531352880231374, guid: eeae210b1d29849e192ba0f2ba462dba, type: 3}
 --- !u!4 &251078197
 Transform:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -21,6 +22,7 @@ public class World : MonoBehaviour
 
     public List<GameObject> Mobs;
 
+    private Camera _cam;
     private Chunk[,] _chunks = new Chunk[VoxelData.WorldSizeInChunks, VoxelData.WorldSizeInChunks];
     private List<ChunkCoord> _activeChunks = new List<ChunkCoord>();
     private ChunkCoord _playerLastChunkCoord;
@@ -33,6 +35,7 @@ public class World : MonoBehaviour
     private void Start()
     {
         Random.InitState(Seed);
+        _cam = Camera.main;
 
         GenerateWorld();
         if (MobSpawnTimeSeconds > 0)
@@ -370,10 +373,13 @@ public class World : MonoBehaviour
     private IEnumerator SpawnMobs()
     {
         yield return new WaitForSeconds(MobSpawnTimeSeconds);
-        GameObject mob = Mobs[Random.Range(0, Mobs.Count)];
-        Instantiate(mob, new Vector3(Player.transform.position.x - (transform.forward.x * 5f), Mathf.Max(VoxelData.ChunkHeight - 60, transform.position.y), Player.transform.position.z - (transform.forward.z * 5f)), Quaternion.identity);
+        GameObject mob = FindObjectsOfType<Enemy>().Count(e => e.Type == EnemyType.Creeper) > 2 ? Mobs[0] : Mobs[Random.Range(0, Mobs.Count)];
+        Instantiate(mob, new Vector3(Player.transform.position.x - (_cam.transform.forward.x * 5f), Mathf.Max(VoxelData.ChunkHeight - 75, Player.transform.position.y), Player.transform.position.z - (_cam.transform.forward.z * 5f)), Quaternion.identity);
 
-        StartCoroutine(SpawnMobs());
+        if (!Player.GetComponent<Player>().IsDead)
+        {
+            StartCoroutine(SpawnMobs());
+        }
     }
 }
 
