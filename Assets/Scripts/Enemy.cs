@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject Blood;
     public GameObject Explosion;
+    public GameObject TNT;
     public EnemyType Type;
     public List<AudioClip> Sounds;
     public AudioSource EnemyAudioSource;
@@ -21,8 +22,11 @@ public class Enemy : MonoBehaviour
     private MeshRenderer[] _meshRenderers;
     private float _timeSinceLastSpoke;
     private float _explosionTimer;
+    private float _lastDropTime;
     private Vector3 _localScale;
+    private List<Color?> _meshColors = new List<Color?>();
 
+    public bool CanFly;
     public float Speed = 2f;
     public float JumpForce = 5f;
     public float Gravity = -9.81f;
@@ -40,6 +44,18 @@ public class Enemy : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _meshRenderers = GetComponentsInChildren<MeshRenderer>();
         _localScale = transform.localScale;
+
+        foreach (MeshRenderer meshRenderer in _meshRenderers)
+        {
+            if (meshRenderer.material.HasProperty("_Color"))
+            {
+                _meshColors.Add(meshRenderer.material?.color);
+            }
+            else
+            {
+                _meshColors.Add(null);
+            }
+        }
     }
 
     void FixedUpdate()
@@ -50,23 +66,31 @@ public class Enemy : MonoBehaviour
         }
 
         CalculateVelocity();
-        if (_jumpRequest)
-        {
-            Jump();
-        }
 
-        if (IsGrounded && System.Math.Abs(_previousPosition.magnitude - transform.position.magnitude) < 0.005f)
+        if (!CanFly)
         {
-            _jumpRequest = true;
+            if (_jumpRequest)
+            {
+                Jump();
+            }
+
+            if (IsGrounded && System.Math.Abs(_previousPosition.magnitude - transform.position.magnitude) < 0.005f)
+            {
+                _jumpRequest = true;
+            }
+
         }
 
         _previousPosition = transform.position;
 
         transform.Translate(_velocity, Space.World);
 
-        if (System.Math.Abs(_rigidbody.velocity.y) < 0.005f)
+        if (!CanFly)
         {
-            IsGrounded = true;
+            if (System.Math.Abs(_rigidbody.velocity.y) < 0.005f)
+            {
+                IsGrounded = true;
+            }
         }
     }
 
@@ -82,7 +106,7 @@ public class Enemy : MonoBehaviour
             return;
         }
 
-        if (Type == EnemyType.Zombie && Time.time - _timeSinceLastSpoke > 5)
+        if ((Type == EnemyType.Zombie || Type == EnemyType.FlyingCreeper) && Time.time - _timeSinceLastSpoke > 5)
         {
             EnemyAudioSource.clip = Sounds[0];
             EnemyAudioSource.Play();
@@ -118,6 +142,14 @@ public class Enemy : MonoBehaviour
                 transform.localScale = _localScale;
             }
         }
+        else if (Type == EnemyType.FlyingCreeper)
+        {
+            if (Time.time - _lastDropTime >= 10 && Vector3.Distance(transform.position, _player.transform.position) < 25)
+            {
+                Instantiate(TNT, transform.position, Quaternion.identity);
+                _lastDropTime = Time.time;
+            }
+        }
 
         GetEnemyRotation();
     }
@@ -132,7 +164,10 @@ public class Enemy : MonoBehaviour
         EnemyAudioSource.clip = Sounds[1];
         EnemyAudioSource.Play();
 
-        _rigidbody.AddForce(dir * 8f, ForceMode.Impulse);
+        if (!CanFly)
+        {
+            _rigidbody.AddForce(dir * 8f, ForceMode.Impulse);
+        }
         foreach (MeshRenderer meshRenderer in _meshRenderers)
         {
             meshRenderer.material.color = Color.red;
@@ -154,9 +189,14 @@ public class Enemy : MonoBehaviour
 
     private void ResetColor()
     {
+        int i = 0;
         foreach (MeshRenderer meshRenderer in _meshRenderers)
         {
-            meshRenderer.material.color = Color.white;
+            if (_meshColors[i] != null)
+            {
+                meshRenderer.material.color = _meshColors[i].Value;
+            }
+            i++;
         }
     }
 
@@ -186,12 +226,14 @@ public class Enemy : MonoBehaviour
         EnemyAudioSource.clip = Sounds[2];
         EnemyAudioSource.Play();
         GetComponent<Animator>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = false;
         if (hitPoint != null)
         {
             GameObject blood = Instantiate(Blood, hitPoint.Value, Quaternion.identity);
             Destroy(blood, 2);
         }
-        foreach (Transform child in transform)
+        Transform trans = transform.Find("Root") ? transform.Find("Root") : transform;
+        foreach (Transform child in trans)
         {
             BoxCollider boxCollider = child.gameObject.GetComponent<BoxCollider>();
             Rigidbody rb = child.gameObject.AddComponent<Rigidbody>();
@@ -247,5 +289,6 @@ public enum EnemyType
 {
     None = 0,
     Zombie = 1,
-    Creeper = 2
+    Creeper = 2,
+    FlyingCreeper = 3
 }

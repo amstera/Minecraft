@@ -373,8 +373,29 @@ public class World : MonoBehaviour
     private IEnumerator SpawnMobs()
     {
         yield return new WaitForSeconds(MobSpawnTimeSeconds);
-        GameObject mob = FindObjectsOfType<Enemy>().Count(e => e.Type == EnemyType.Creeper) > 2 ? Mobs[0] : Mobs[Random.Range(0, Mobs.Count)];
-        Instantiate(mob, new Vector3(Player.transform.position.x - (_cam.transform.forward.x * 5f), Mathf.Max(VoxelData.ChunkHeight - 75, Player.transform.position.y), Player.transform.position.z - (_cam.transform.forward.z * 5f)), Quaternion.identity);
+        List<GameObject> possibleMobs = new List<GameObject>
+        {
+            Mobs[0]
+        };
+        if (FindObjectsOfType<Enemy>().Count(e => e.Type == EnemyType.Creeper) < 2)
+        {
+            possibleMobs.Add(Mobs[1]);
+        }
+        if (FindObjectsOfType<Enemy>().Count(e => e.Type == EnemyType.FlyingCreeper) == 0)
+        {
+            possibleMobs.Add(Mobs[2]);
+        }
+        GameObject mob = possibleMobs[Random.Range(0, possibleMobs.Count)];
+        Vector3 pos;
+        if (mob.GetComponent<Enemy>().Type == EnemyType.FlyingCreeper)
+        {
+            pos = new Vector3(Player.transform.position.x - (_cam.transform.forward.x * 7.5f), VoxelData.ChunkHeight - 55, Player.transform.position.z - (_cam.transform.forward.z * 7.5f));
+        }
+        else
+        {
+            pos = new Vector3(Player.transform.position.x - (_cam.transform.forward.x * 7.5f), Mathf.Max(VoxelData.ChunkHeight - 75, Player.transform.position.y), Player.transform.position.z - (_cam.transform.forward.z * 7.5f));
+        }
+        Instantiate(mob, pos, Quaternion.identity);
 
         if (!Player.GetComponent<Player>().IsDead)
         {

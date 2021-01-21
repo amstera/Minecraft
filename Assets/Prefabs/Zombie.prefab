@@ -267,12 +267,14 @@ MonoBehaviour:
   IsGrounded: 0
   Blood: {fileID: 2709091413970329957, guid: aca783119f62045ca8ddc297e4303f5d, type: 3}
   Explosion: {fileID: 3861215743665860105, guid: f2758ece403f34880bc189cd6d3aba7d, type: 3}
+  TNT: {fileID: 2625756606007123418, guid: ff500e9c0692747abbfb2ff772cb69e6, type: 3}
   Type: 1
   Sounds:
   - {fileID: 8300000, guid: 296eb4adbf0cc43998d9d66c89f93676, type: 3}
   - {fileID: 8300000, guid: 34e84df8907bf4456b2b537151cf5661, type: 3}
   - {fileID: 8300000, guid: 9b1753e8a41f14ba0ae86acc5f81b36a, type: 3}
   EnemyAudioSource: {fileID: -1135780364001415651}
+  CanFly: 0
   Speed: 2
   JumpForce: 5
   Gravity: -9.81

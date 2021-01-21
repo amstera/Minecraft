@@ -1,18 +1,19 @@
 ﻿<Properties StartupConfiguration="{6D84558F-D623-0CB4-722B-FC6D96BDFC85}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/World.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/TNT.cs">
     <Files>
-      <File FileName="Assets/Scripts/Enemy.cs" Line="206" Column="27" />
-      <File FileName="Assets/Scripts/World.cs" Line="369" Column="6" />
-      <File FileName="Assets/Scripts/Chunk.cs" Line="188" Column="25" />
-      <File FileName="Assets/Scripts/Player.cs" Line="25" Column="40" />
+      <File FileName="Assets/Scripts/Enemy.cs" Line="231" Column="10" />
+      <File FileName="Assets/Scripts/Player.cs" />
+      <File FileName="Assets/Scripts/World.cs" Line="394" Column="13" />
+      <File FileName="Assets/Scripts/Chunk.cs" />
       <File FileName="Assets/Scripts/Inventory.cs" />
       <File FileName="Assets/Scripts/SwayMovement.cs" />
       <File FileName="Assets/Scripts/MiniBlock.cs" />
       <File FileName="Assets/Scripts/VoxelData.cs" />
       <File FileName="Assets/Scripts/BiomeAttribute.cs" />
-      <File FileName="Assets/Scripts/Noise.cs" Line="5" Column="25" />
+      <File FileName="Assets/Scripts/Noise.cs" />
       <File FileName="Assets/Scripts/MouseLook.cs" />
-      <File FileName="Assets/Scripts/Structure.cs" Line="8" Column="51" />
+      <File FileName="Assets/Scripts/Structure.cs" />
+      <File FileName="Assets/Scripts/TNT.cs" Line="31" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -24,7 +25,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="66282436-38cd-4568-a6c4-7bd5d2068d6f" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="03d2aec5-3043-4e27-b2e0-13456dbd36df" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

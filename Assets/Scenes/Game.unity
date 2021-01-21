@@ -1149,6 +1149,7 @@ MonoBehaviour:
   Mobs:
   - {fileID: 4014877240985995467, guid: 0c14bf0ba091646a881bf439a41b1c2e, type: 3}
   - {fileID: 1838531352880231374, guid: eeae210b1d29849e192ba0f2ba462dba, type: 3}
+  - {fileID: 3710031332630894525, guid: a65990ab1ad9b464d96ee21f70137053, type: 3}
 --- !u!4 &251078197
 Transform:
   m_ObjectHideFlags: 0
