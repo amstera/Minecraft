@@ -15,11 +15,13 @@ public class Inventory : MonoBehaviour
     public GameObject StoneBlock;
     public GameObject WoodBlock;
     public GameObject Sword;
+    public GameObject Gun;
 
     public Texture DirtTexture;
     public Texture WoodTexture;
     public Texture StoneTexture;
     public Texture SwordTexture;
+    public Texture GunTexture;
 
     public AudioSource PickUpItemAS;
 
@@ -172,6 +174,10 @@ public class Inventory : MonoBehaviour
                 {
                     texture = SwordTexture;
                 }
+                else if (inventory[i].Block == Blocks.Gun)
+                {
+                    texture = GunTexture;
+                }
 
                 image.texture = texture;
                 if (inventory[i].Count > 1)
@@ -215,6 +221,10 @@ public class Inventory : MonoBehaviour
             {
                 Sword.SetActive(true);
             }
+            else if (inventory[_selectedIndex].Block == Blocks.Gun)
+            {
+                Gun.SetActive(true);
+            }
         }
 
         _previouslySelectedIndex = _selectedIndex;
@@ -237,6 +247,11 @@ public class Inventory : MonoBehaviour
             new InventoryBlock
             {
                 Block = Blocks.Sword,
+                Count = 1
+            },
+            new InventoryBlock
+            {
+                Block = Blocks.Gun,
                 Count = 1
             }
         };

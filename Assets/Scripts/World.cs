@@ -505,6 +505,7 @@ public class VoxelMod
 
 public enum Blocks
 {
+    Gun = -2,
     Sword = -1,
     Empty = 0,
     Bedrock = 1,

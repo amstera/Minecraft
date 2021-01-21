@@ -144,7 +144,7 @@ public class Enemy : MonoBehaviour
         }
         else if (Type == EnemyType.FlyingCreeper)
         {
-            if (Time.time - _lastDropTime >= 10 && Vector3.Distance(transform.position, _player.transform.position) < 25)
+            if (Time.time - _lastDropTime >= 10 && Vector3.Distance(transform.position, _player.transform.position) < 20)
             {
                 Instantiate(TNT, transform.position, Quaternion.identity);
                 _lastDropTime = Time.time;
