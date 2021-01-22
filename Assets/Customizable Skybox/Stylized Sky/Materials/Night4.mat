@@ -76,7 +76,7 @@ Material:
     - _SunDiscContribution: 1
     - _SunDiscExponent: 250000
     - _SunDiscMultiplier: 500
-    - _SunHaloContribution: 0.5
+    - _SunHaloContribution: 0.27
     - _SunHaloExponent: 500
     - _UVSec: 0
     - _ZWrite: 1
@@ -88,4 +88,5 @@ Material:
     - _SkyGradientBottom: {r: 0.12683824, g: 0.3133874, b: 0.375, a: 0}
     - _SkyGradientTop: {r: 0.027897932, g: 0.049892798, b: 0.08823531, a: 0}
     - _SunDiscColor: {r: 1, g: 1, b: 1, a: 1}
-    - _SunHaloColor: {r: 0.04757783, g: 0.8088235, b: 0.7143241, a: 1}
+    - _SunHaloColor: {r: 0.55268776, g: 0.8679245, b: 0.82892615, a: 1}
+  m_BuildTextureStacks: []

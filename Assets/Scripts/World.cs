@@ -20,6 +20,11 @@ public class World : MonoBehaviour
     public GameObject StoneBlock;
     public GameObject BlockParticles;
 
+    public Light Light;
+    public Material Skybox;
+    public Color[] SkyDayColors = new Color[2];
+    public Color[] SkyNightColors = new Color[2];
+
     public List<GameObject> Mobs;
 
     private Camera _cam;
@@ -29,6 +34,9 @@ public class World : MonoBehaviour
     private List<ChunkCoord> _chunksToCreate = new List<ChunkCoord>();
     private List<Chunk> _chunksToUpdate = new List<Chunk>();
     private Queue<VoxelMod> _modifications = new Queue<VoxelMod>();
+
+    private float _timePassed;
+    private bool _isNight;
 
     private bool _applyingModifications;
 
@@ -66,6 +74,8 @@ public class World : MonoBehaviour
         {
             UpdateChunks();
         }
+
+        UpdateSky();
     }
 
     public Chunk GetChunkFromVector3 (Vector3 pos)
@@ -373,6 +383,7 @@ public class World : MonoBehaviour
     private IEnumerator SpawnMobs()
     {
         yield return new WaitForSeconds(MobSpawnTimeSeconds);
+
         List<GameObject> possibleMobs = new List<GameObject>
         {
             Mobs[0]
@@ -395,12 +406,47 @@ public class World : MonoBehaviour
         {
             pos = new Vector3(Player.transform.position.x - (_cam.transform.forward.x * 7.5f), Mathf.Max(VoxelData.ChunkHeight - 75, Player.transform.position.y), Player.transform.position.z - (_cam.transform.forward.z * 7.5f));
         }
-        Instantiate(mob, pos, Quaternion.identity);
+        if (_timePassed >= 45)
+        {
+            Instantiate(mob, pos, Quaternion.identity);
+        }
+        else
+        {
+            foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+            {
+                enemy.TakeDamage(enemy.gameObject.transform.forward, null, enemy.Health, 8);
+            }
+        }
 
         if (!Player.GetComponent<Player>().IsDead)
         {
             StartCoroutine(SpawnMobs());
         }
+    }
+
+    private void UpdateSky()
+    {
+        if (_isNight)
+        {
+            _timePassed -= Time.deltaTime;
+            if (_timePassed <= 0)
+            {
+                _isNight = false;
+            }
+        }
+        else
+        {
+            _timePassed += Time.deltaTime;
+            if (_timePassed >= 90)
+            {
+                _isNight = true;
+            }
+        }
+
+        Light.intensity = 1 - _timePassed / 90;
+        Skybox.SetColor("_SkyGradientTop", Color.Lerp(SkyDayColors[0], SkyNightColors[0], _timePassed / 90));
+        Skybox.SetColor("_SkyGradientBottom", Color.Lerp(SkyDayColors[1], SkyNightColors[1], _timePassed / 90));
+        Skybox.SetFloat("_SunHaloContribution", (90 -_timePassed) / 90 * 0.2f);
     }
 }
 

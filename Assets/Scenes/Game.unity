@@ -1085,7 +1085,7 @@ MonoBehaviour:
   Biome: {fileID: 11400000, guid: aa479baeb218b4fb6a32a95846202729, type: 2}
   Player: {fileID: 1037752340}
   SpawnPosition: {x: 0, y: 0, z: 0}
-  MobSpawnTimeSeconds: 12
+  MobSpawnTimeSeconds: 8
   Material: {fileID: 2100000, guid: 222d4eba2dcc44e6bb1e3a4e7297fb8e, type: 2}
   BlockTypes:
   - blockName: Empty
@@ -1148,6 +1148,14 @@ MonoBehaviour:
   WoodBlock: {fileID: 3717071137883751269, guid: 16eec96803f5a416bbb020dd73dd572b, type: 3}
   StoneBlock: {fileID: 3717071137883751269, guid: 9d47dc9daec264773a410d28ceb7b8d9, type: 3}
   BlockParticles: {fileID: 7953311011937868878, guid: 4912041ed400643d58460ca42eb8d48d, type: 3}
+  Light: {fileID: 705507994}
+  Skybox: {fileID: 2100000, guid: 56113b3b655ab7349bab4d7d405c258a, type: 2}
+  SkyDayColors:
+  - {r: 0.30980393, g: 0.72156864, b: 0.972549, a: 0}
+  - {r: 0.64705884, g: 0.91764706, b: 1, a: 0}
+  SkyNightColors:
+  - {r: 0.13612497, g: 0.15245843, b: 0.1792453, a: 0}
+  - {r: 0.3773585, g: 0.3773585, b: 0.3773585, a: 0}
   Mobs:
   - {fileID: 4014877240985995467, guid: 0c14bf0ba091646a881bf439a41b1c2e, type: 3}
   - {fileID: 1838531352880231374, guid: eeae210b1d29849e192ba0f2ba462dba, type: 3}

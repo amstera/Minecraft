@@ -55,6 +55,52 @@ public class Inventory : MonoBehaviour
             scrolled = true;
         }
 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            _selectedIndex = 0;
+            scrolled = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            _selectedIndex = 1;
+            scrolled = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            _selectedIndex = 2;
+            scrolled = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            _selectedIndex = 3;
+            scrolled = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            _selectedIndex = 4;
+            scrolled = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            _selectedIndex = 5;
+            scrolled = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            _selectedIndex = 6;
+            scrolled = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha8))
+        {
+            _selectedIndex = 7;
+            scrolled = true;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            _selectedIndex = 8;
+            scrolled = true;
+        }
+
         if (scrolled)
         {
             List<InventoryBlock> inventory = GetInventory();

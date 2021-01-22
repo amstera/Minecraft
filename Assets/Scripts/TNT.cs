@@ -63,7 +63,7 @@ public class TNT : MonoBehaviour
             int damage = Mathf.FloorToInt(Damage * (1f / distance));
             if (col.gameObject.GetComponent<Enemy>() != null)
             {
-                col.gameObject.GetComponent<Enemy>().TakeDamage(transform.forward, null, damage);
+                col.gameObject.GetComponent<Enemy>().TakeDamage(transform.forward, null, damage, 10);
             }
             else if (col.gameObject.GetComponent<Player>() != null)
             {

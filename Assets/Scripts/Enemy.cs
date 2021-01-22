@@ -154,7 +154,7 @@ public class Enemy : MonoBehaviour
         GetEnemyRotation();
     }
 
-    public void TakeDamage(Vector3 dir, Vector3? hitPoint, int damage)
+    public void TakeDamage(Vector3 dir, Vector3? hitPoint, int damage, float force)
     {
         if (IsDead)
         {
@@ -166,7 +166,7 @@ public class Enemy : MonoBehaviour
 
         if (!CanFly)
         {
-            _rigidbody.AddForce(dir * 8f, ForceMode.Impulse);
+            _rigidbody.AddForce(dir * force, ForceMode.Impulse);
         }
         foreach (MeshRenderer meshRenderer in _meshRenderers)
         {
@@ -259,7 +259,7 @@ public class Enemy : MonoBehaviour
             int damage = Mathf.FloorToInt(Damage * (1f / distance));
             if (col.gameObject.GetComponent<Enemy>() != null)
             {
-                col.gameObject.GetComponent<Enemy>().TakeDamage(transform.forward, null, damage);
+                col.gameObject.GetComponent<Enemy>().TakeDamage(transform.forward, null, damage, 10);
             }
             else if (col.gameObject.GetComponent<Player>() != null)
             {

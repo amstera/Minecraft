@@ -274,7 +274,7 @@ public class Player : MonoBehaviour
             Enemy enemy = hit.collider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(_cam.transform.forward, hit.point, 7);
+                enemy.TakeDamage(_cam.transform.forward, hit.point, 7, 8);
             }
         }
     }
@@ -289,7 +289,7 @@ public class Player : MonoBehaviour
             Enemy enemy = hit.collider.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.TakeDamage(_cam.transform.forward, hit.point, 15);
+                enemy.TakeDamage(_cam.transform.forward, hit.point, 15, 10);
             }
         }
     }
