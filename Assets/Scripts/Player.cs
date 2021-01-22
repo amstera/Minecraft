@@ -198,7 +198,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Blocks selectedBlock = Inventory.Instance.GetSelectedBlock();
-            if (selectedBlock > Blocks.Empty && HighlightBlock.gameObject.activeSelf)
+            if (selectedBlock > Blocks.Empty && selectedBlock != Blocks.Diamond && HighlightBlock.gameObject.activeSelf)
             {
                 PlayBlockSound(selectedBlock);
                 _world.GetChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, selectedBlock);

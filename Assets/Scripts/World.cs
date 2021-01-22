@@ -18,6 +18,7 @@ public class World : MonoBehaviour
     public GameObject DirtBlock;
     public GameObject WoodBlock;
     public GameObject StoneBlock;
+    public GameObject DiamondBlock;
     public GameObject BlockParticles;
 
     public Light Light;
@@ -106,6 +107,10 @@ public class World : MonoBehaviour
         else if (block == Blocks.Stone)
         {
             selectedBlock = StoneBlock;
+        }
+        else if (block == Blocks.Diamond)
+        {
+            selectedBlock = DiamondBlock;
         }
         if (selectedBlock != null)
         {
@@ -349,7 +354,7 @@ public class World : MonoBehaviour
         {
             foreach (Lode lode in Biome.Lodes)
             {
-                if (yPos > lode.MinHeight && yPos > lode.MaxHeight)
+                if (yPos > lode.MinHeight && yPos < lode.MaxHeight)
                 {
                     if (Noise.Get3DPerlin(pos, lode.NoiseOffset, lode.Scale, lode.Threshold))
                     {
@@ -400,11 +405,11 @@ public class World : MonoBehaviour
         Vector3 pos;
         if (mob.GetComponent<Enemy>().Type == EnemyType.FlyingCreeper)
         {
-            pos = new Vector3(Player.transform.position.x - (_cam.transform.forward.x * 7.5f), VoxelData.ChunkHeight - 55, Player.transform.position.z - (_cam.transform.forward.z * 7.5f));
+            pos = new Vector3(Player.transform.position.x - (_cam.transform.forward.x * 10f), VoxelData.ChunkHeight - 55, Player.transform.position.z - (_cam.transform.forward.z * 10f));
         }
         else
         {
-            pos = new Vector3(Player.transform.position.x - (_cam.transform.forward.x * 7.5f), Mathf.Max(VoxelData.ChunkHeight - 75, Player.transform.position.y), Player.transform.position.z - (_cam.transform.forward.z * 7.5f));
+            pos = new Vector3(Player.transform.position.x - (_cam.transform.forward.x * 10f), Mathf.Max(VoxelData.ChunkHeight - 75, Player.transform.position.y), Player.transform.position.z - (_cam.transform.forward.z * 10f));
         }
         if (_timePassed >= 45)
         {
@@ -559,5 +564,6 @@ public enum Blocks
     Grass = 3,
     Dirt = 4,
     Wood = 5,
-    Leaves = 6
+    Leaves = 6,
+    Diamond = 7
 }

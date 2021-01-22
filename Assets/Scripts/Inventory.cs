@@ -14,12 +14,14 @@ public class Inventory : MonoBehaviour
     public GameObject DirtBlock;
     public GameObject StoneBlock;
     public GameObject WoodBlock;
+    public GameObject Diamond;
     public GameObject Sword;
     public GameObject Gun;
 
     public Texture DirtTexture;
     public Texture WoodTexture;
     public Texture StoneTexture;
+    public Texture DiamondTexture;
     public Texture SwordTexture;
     public Texture GunTexture;
 
@@ -216,6 +218,10 @@ public class Inventory : MonoBehaviour
                 {
                     texture = StoneTexture;
                 }
+                else if (inventory[i].Block == Blocks.Diamond)
+                {
+                    texture = DiamondTexture;
+                }
                 else if (inventory[i].Block == Blocks.Sword)
                 {
                     texture = SwordTexture;
@@ -263,6 +269,10 @@ public class Inventory : MonoBehaviour
             {
                 WoodBlock.SetActive(true);
             }
+            else if (inventory[_selectedIndex].Block == Blocks.Diamond)
+            {
+                Diamond.SetActive(true);
+            }
             else if (inventory[_selectedIndex].Block == Blocks.Sword)
             {
                 Sword.SetActive(true);
@@ -293,11 +303,6 @@ public class Inventory : MonoBehaviour
             new InventoryBlock
             {
                 Block = Blocks.Sword,
-                Count = 1
-            },
-            new InventoryBlock
-            {
-                Block = Blocks.Gun,
                 Count = 1
             }
         };

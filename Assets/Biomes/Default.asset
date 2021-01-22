@@ -22,4 +22,11 @@ MonoBehaviour:
   TreePlacementThreshold: 0.8
   MaxTreeHeight: 12
   MinTreeHeight: 5
-  Lodes: []
+  Lodes:
+  - NodeName: Diamond
+    Block: 7
+    MinHeight: -60
+    MaxHeight: 60
+    Scale: 2
+    Threshold: 0.58
+    NoiseOffset: 0
