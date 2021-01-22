@@ -176,6 +176,11 @@ public class Player : MonoBehaviour
             {
                 SwingSword();
             }
+            else if (selectedBlock == Blocks.Gun)
+            {
+                ShootGun();
+            }
+
             if (HighlightBlock.gameObject.activeSelf)
             {
                 Chunk chunk = _world.GetChunkFromVector3(HighlightBlock.position);
@@ -202,6 +207,10 @@ public class Player : MonoBehaviour
             else if (selectedBlock == Blocks.Sword)
             {
                 SwingSword();
+            }
+            else if (selectedBlock == Blocks.Gun)
+            {
+                ShootGun();
             }
         }
     }
@@ -266,6 +275,21 @@ public class Player : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(_cam.transform.forward, hit.point, 7);
+            }
+        }
+    }
+
+    private void ShootGun()
+    {
+        int layerMask = LayerMask.GetMask("Enemy");
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask))
+        {
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(_cam.transform.forward, hit.point, 15);
             }
         }
     }
