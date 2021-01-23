@@ -15,15 +15,19 @@ public class Inventory : MonoBehaviour
     public GameObject StoneBlock;
     public GameObject WoodBlock;
     public GameObject Diamond;
+    public GameObject Gold;
     public GameObject Sword;
     public GameObject Gun;
+    public GameObject Hourglass;
 
     public Texture DirtTexture;
     public Texture WoodTexture;
     public Texture StoneTexture;
     public Texture DiamondTexture;
+    public Texture GoldTexture;
     public Texture SwordTexture;
     public Texture GunTexture;
+    public Texture HourglassTexture;
 
     public AudioSource PickUpItemAS;
 
@@ -233,6 +237,10 @@ public class Inventory : MonoBehaviour
                 {
                     texture = DiamondTexture;
                 }
+                else if (inventory[i].Block == Blocks.Gold)
+                {
+                    texture = GoldTexture;
+                }
                 else if (inventory[i].Block == Blocks.Sword)
                 {
                     texture = SwordTexture;
@@ -240,6 +248,10 @@ public class Inventory : MonoBehaviour
                 else if (inventory[i].Block == Blocks.Gun)
                 {
                     texture = GunTexture;
+                }
+                else if (inventory[i].Block == Blocks.Stopwatch)
+                {
+                    texture = HourglassTexture;
                 }
 
                 image.texture = texture;
@@ -284,6 +296,10 @@ public class Inventory : MonoBehaviour
             {
                 Diamond.SetActive(true);
             }
+            else if (inventory[_selectedIndex].Block == Blocks.Gold)
+            {
+                Gold.SetActive(true);
+            }
             else if (inventory[_selectedIndex].Block == Blocks.Sword)
             {
                 Sword.SetActive(true);
@@ -291,6 +307,10 @@ public class Inventory : MonoBehaviour
             else if (inventory[_selectedIndex].Block == Blocks.Gun)
             {
                 Gun.SetActive(true);
+            }
+            else if (inventory[_selectedIndex].Block == Blocks.Stopwatch)
+            {
+                Hourglass.SetActive(true);
             }
         }
 

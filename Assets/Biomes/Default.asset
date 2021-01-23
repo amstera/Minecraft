@@ -23,10 +23,17 @@ MonoBehaviour:
   MaxTreeHeight: 12
   MinTreeHeight: 5
   Lodes:
-  - NodeName: Diamond
-    Block: 7
+  - NodeName: Gold
+    Block: 8
     MinHeight: -60
     MaxHeight: 60
     Scale: 2
     Threshold: 0.58
     NoiseOffset: 0
+  - NodeName: Diamond
+    Block: 7
+    MinHeight: -60
+    MaxHeight: 60
+    Scale: 2
+    Threshold: 0.6
+    NoiseOffset: 5

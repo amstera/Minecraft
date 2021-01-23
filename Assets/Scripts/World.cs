@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class World : MonoBehaviour
 {
@@ -19,7 +20,10 @@ public class World : MonoBehaviour
     public GameObject WoodBlock;
     public GameObject StoneBlock;
     public GameObject DiamondBlock;
+    public GameObject GoldBlock;
     public GameObject BlockParticles;
+
+    public GameObject Status;
 
     public Light Light;
     public Material Skybox;
@@ -38,6 +42,7 @@ public class World : MonoBehaviour
 
     private float _timePassed;
     private bool _isNight;
+    private float _frozenTime = -10;
 
     private bool _applyingModifications;
 
@@ -76,15 +81,17 @@ public class World : MonoBehaviour
             UpdateChunks();
         }
 
+        UpdateStatus();
+
         UpdateSky();
     }
 
-    public Chunk GetChunkFromVector3 (Vector3 pos)
+    public Chunk GetChunkFromVector3(Vector3 pos)
     {
         int x = Mathf.FloorToInt(pos.x / VoxelData.ChunkWidth);
         int z = Mathf.FloorToInt(pos.z / VoxelData.ChunkWidth);
         return _chunks[x, z];
-    } 
+    }
 
     private ChunkCoord GetChunkCoordFromVector3(Vector3 pos)
     {
@@ -111,6 +118,10 @@ public class World : MonoBehaviour
         else if (block == Blocks.Diamond)
         {
             selectedBlock = DiamondBlock;
+        }
+        else if (block == Blocks.Gold)
+        {
+            selectedBlock = GoldBlock;
         }
         if (selectedBlock != null)
         {
@@ -385,6 +396,29 @@ public class World : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
+    public void FreezeTime()
+    {
+        _frozenTime = Time.time;
+        foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+        {
+            enemy.Freeze();
+        }
+        StartCoroutine(UnfreezeTime());
+    }
+
+    private IEnumerator UnfreezeTime()
+    {
+        yield return new WaitForSeconds(10);
+
+        if (Time.time - _frozenTime >= 10)
+        {
+            foreach (Enemy enemy in FindObjectsOfType<Enemy>())
+            {
+                enemy.Unfreeze();
+            }
+        }
+    }
+
     private IEnumerator SpawnMobs()
     {
         yield return new WaitForSeconds(MobSpawnTimeSeconds);
@@ -411,9 +445,12 @@ public class World : MonoBehaviour
         {
             pos = new Vector3(Player.transform.position.x - (_cam.transform.forward.x * 10f), Mathf.Max(VoxelData.ChunkHeight - 75, Player.transform.position.y), Player.transform.position.z - (_cam.transform.forward.z * 10f));
         }
-        if (_timePassed >= 45)
+        if (_timePassed >= 50)
         {
-            Instantiate(mob, pos, Quaternion.identity);
+            if (Time.time - _frozenTime >= 10)
+            {
+                Instantiate(mob, pos, Quaternion.identity);
+            }
         }
         else
         {
@@ -426,6 +463,21 @@ public class World : MonoBehaviour
         if (!Player.GetComponent<Player>().IsDead)
         {
             StartCoroutine(SpawnMobs());
+        }
+    }
+
+    private void UpdateStatus()
+    {
+        if (Time.time - _frozenTime < 10)
+        {
+            Status.SetActive(true);
+            Text text = Status.transform.Find("Time").GetComponent<Text>();
+            int timeRemaining = Mathf.FloorToInt(10 - (Time.time - _frozenTime)) + 1;
+            text.text = $"00:{timeRemaining.ToString("00")}";
+        }
+        else
+        {
+            Status.SetActive(false);
         }
     }
 
@@ -556,6 +608,7 @@ public class VoxelMod
 
 public enum Blocks
 {
+    Stopwatch = -3,
     Gun = -2,
     Sword = -1,
     Empty = 0,
@@ -565,5 +618,6 @@ public enum Blocks
     Dirt = 4,
     Wood = 5,
     Leaves = 6,
-    Diamond = 7
+    Diamond = 7,
+    Gold = 8
 }

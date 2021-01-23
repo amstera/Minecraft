@@ -23,6 +23,7 @@ public class Enemy : MonoBehaviour
     private float _timeSinceLastSpoke;
     private float _explosionTimer;
     private float _lastDropTime;
+    private float _startSpeed;
     private Vector3 _localScale;
     private List<Color?> _meshColors = new List<Color?>();
 
@@ -44,6 +45,7 @@ public class Enemy : MonoBehaviour
         _rigidbody = GetComponent<Rigidbody>();
         _meshRenderers = GetComponentsInChildren<MeshRenderer>();
         _localScale = transform.localScale;
+        _startSpeed = Speed;
 
         foreach (MeshRenderer meshRenderer in _meshRenderers)
         {
@@ -67,7 +69,7 @@ public class Enemy : MonoBehaviour
 
         CalculateVelocity();
 
-        if (!CanFly)
+        if (!CanFly && Speed > 0)
         {
             if (_jumpRequest)
             {
@@ -101,7 +103,7 @@ public class Enemy : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (IsDead)
+        if (IsDead || Speed <= 0)
         {
             return;
         }
@@ -178,6 +180,18 @@ public class Enemy : MonoBehaviour
         {
             Die(dir, hitPoint);
         }
+    }
+
+    public void Freeze()
+    {
+        GetComponent<Animator>().enabled = false;
+        Speed = 0;
+    }
+
+    public void Unfreeze()
+    {
+        GetComponent<Animator>().enabled = true;
+        Speed = _startSpeed;
     }
 
     private void Jump()

@@ -195,6 +195,10 @@ public class Player : MonoBehaviour
             {
                 ShootGun();
             }
+            else if (selectedBlock == Blocks.Stopwatch)
+            {
+                UseStopwatch();
+            }
 
             if (HighlightBlock.gameObject.activeSelf)
             {
@@ -213,7 +217,7 @@ public class Player : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         {
             Blocks selectedBlock = Inventory.Instance.GetSelectedBlock();
-            if (selectedBlock > Blocks.Empty && selectedBlock != Blocks.Diamond && HighlightBlock.gameObject.activeSelf)
+            if (selectedBlock > Blocks.Empty && selectedBlock != Blocks.Diamond && selectedBlock != Blocks.Gold && HighlightBlock.gameObject.activeSelf)
             {
                 PlayBlockSound(selectedBlock);
                 _world.GetChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, selectedBlock);
@@ -226,6 +230,10 @@ public class Player : MonoBehaviour
             else if (selectedBlock == Blocks.Gun)
             {
                 ShootGun();
+            }
+            else if (selectedBlock == Blocks.Stopwatch)
+            {
+                UseStopwatch();
             }
         }
     }
@@ -307,6 +315,12 @@ public class Player : MonoBehaviour
                 enemy.TakeDamage(_cam.transform.forward, hit.point, 15, 10);
             }
         }
+    }
+
+    private void UseStopwatch()
+    {
+        _world.FreezeTime();
+        Inventory.Instance.Remove(Blocks.Stopwatch);
     }
 
     private void PlayBlockSound(Blocks block)

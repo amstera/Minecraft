@@ -7,7 +7,7 @@ public class SwayMovement : MonoBehaviour
     public float SmoothAmount;
     public string AnimationName = "Using";
     public Blocks Type;
-    public AudioSource WeaponAudioSource;
+    public AudioClip AudioClip;
 
     private Vector3 _initialPosition;
     private Animator[] _animators;
@@ -35,12 +35,19 @@ public class SwayMovement : MonoBehaviour
             return;
         }
 
-        if (Type == Blocks.Gun  && (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)))
+        if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
-            Transform muzzleFlash = transform.Find("MuzzleFlash");
-            WeaponAudioSource.Play();
-            muzzleFlash.gameObject.SetActive(true);
-            Invoke("DisableMuzzleFlash", 0.2f);
+            if (Type == Blocks.Gun)
+            {
+                Transform muzzleFlash = transform.Find("MuzzleFlash");
+                AudioSource.PlayClipAtPoint(AudioClip, transform.position);
+                muzzleFlash.gameObject.SetActive(true);
+                Invoke("DisableMuzzleFlash", 0.2f);
+            }
+            else if (Type == Blocks.Stopwatch)
+            {
+                AudioSource.PlayClipAtPoint(AudioClip, transform.position);
+            }
         }
 
         float movementX = Input.GetAxis("Mouse X") * Amount;
