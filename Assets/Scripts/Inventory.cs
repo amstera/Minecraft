@@ -132,11 +132,17 @@ public class Inventory : MonoBehaviour
 
     public void Remove(Blocks block)
     {
-        if (block != Blocks.Empty)
+        if (_blocks.Count > 0 && block != Blocks.Empty)
         {
-            _blocks.Remove(block);
-
-            UpdateInventory();
+            for (int i = _blocks.Count - 1; i >= 0; i--)
+            {
+                if (_blocks[i] == block)
+                {
+                    _blocks.RemoveAt(i);
+                    UpdateInventory();
+                    return;
+                }
+            }
         }
     }
 
@@ -155,6 +161,11 @@ public class Inventory : MonoBehaviour
         }
 
         return inventory[_selectedIndex].Block;
+    }
+
+    public List<InventoryBlock> GetInventoryBlocks()
+    {
+        return GetInventory();
     }
 
     private void GetToolbeltRefs()

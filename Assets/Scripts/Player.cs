@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public Transform PlaceBlock;
     public GameObject Hearts;
     public GameObject DeathScreen;
+    public GameObject Crafting;
 
     public Texture FullHeart;
     public Texture HalfHeart;
@@ -166,6 +167,20 @@ public class Player : MonoBehaviour
         if (IsGrounded && Input.GetKeyDown(KeyCode.Space))
         {
             _jumpRequest = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (Crafting.activeSelf)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+                Crafting.SetActive(false);
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                Crafting.SetActive(true);
+            }
         }
 
         //Destroy block

@@ -59,6 +59,7 @@
     <Compile Include="Assets/PostProcessing/Runtime/Components/FxaaComponent.cs" />
     <Compile Include="Assets/PostProcessing/Runtime/Models/MotionBlurModel.cs" />
     <Compile Include="Assets/Scripts/Structure.cs" />
+    <Compile Include="Assets/Nokobot/Modern Guns - Handgun/_Demo Assets/SimpleShoot.cs" />
     <Compile Include="Assets/Scripts/Noise.cs" />
     <Compile Include="Assets/PostProcessing/Runtime/Components/UserLutComponent.cs" />
     <Compile Include="Assets/Scripts/VoxelData.cs" />
@@ -114,7 +115,7 @@
     <Compile Include="Assets/PostProcessing/Runtime/Models/UserLutModel.cs" />
     <Compile Include="Assets/PostProcessing/Runtime/Components/BloomComponent.cs" />
     <Compile Include="Assets/PostProcessing/Runtime/Models/DitheringModel.cs" />
-    <Compile Include="Assets/Nokobot/Modern Guns - Handgun/_Demo Assets/SimpleShoot.cs" />
+    <Compile Include="Assets/Scripts/Crafting.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets/PostProcessing/Resources/Shaders/ScreenSpaceReflection.shader" />
