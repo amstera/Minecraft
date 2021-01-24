@@ -90,7 +90,7 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (IsDead)
+        if (IsDead || Menu.Instance.IsInvisibility)
         {
             return;
         }

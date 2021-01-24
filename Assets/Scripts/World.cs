@@ -24,6 +24,9 @@ public class World : MonoBehaviour
 
     public GameObject Status;
 
+    public AudioSource MusicAudioSource;
+    public Toggle Music;
+
     public Light Light;
     public Material Skybox;
     public Color[] SkyDayColors = new Color[2];
@@ -47,10 +50,15 @@ public class World : MonoBehaviour
 
     private void Start()
     {
+        Seed = Menu.Instance.Seed;
+        if (!Menu.Instance.MusicOn)
+        {
+            Music.isOn = false;
+        }
         Random.InitState(Seed);
         _cam = Camera.main;
         GenerateWorld();
-        if (MobSpawnTimeSeconds > 0)
+        if (MobSpawnTimeSeconds > 0 && !Menu.Instance.NoMobs)
         {
             StartCoroutine(SpawnMobs());
         }
@@ -391,6 +399,19 @@ public class World : MonoBehaviour
     public void ResetWorld()
     {
         SceneManager.LoadScene(0);
+    }
+
+    public void ChangeMusic(bool isOn)
+    {
+        Menu.Instance.MusicOn = isOn;
+        if (isOn)
+        {
+            MusicAudioSource.Play();
+        }
+        else
+        {
+            MusicAudioSource.Stop();
+        }
     }
 
     public void FreezeTime()
