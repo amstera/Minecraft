@@ -398,7 +398,7 @@ public class World : MonoBehaviour
 
     public void ResetWorld()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Game");
     }
 
     public void ChangeMusic(bool isOn)

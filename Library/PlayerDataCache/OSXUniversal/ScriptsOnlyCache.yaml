@@ -20,6 +20,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Recorder.MovieRecorderSettings
     - UnityEditor.Recorder.RecorderControllerSettings
     - UnityEditor.Recorder.RecorderSettingsPrefsEditor
+    - UnityEditor.Recorder.RecorderWindow
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -84,51 +85,51 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1606}
+      Script: {instanceID: 1608}
     - Class: 114
-      Script: {instanceID: 1716}
+      Script: {instanceID: 1718}
     - Class: 114
-      Script: {instanceID: 1762}
+      Script: {instanceID: 1764}
     - Class: 114
-      Script: {instanceID: 1884}
+      Script: {instanceID: 1888}
     - Class: 114
-      Script: {instanceID: 2150}
+      Script: {instanceID: 2154}
     - Class: 114
-      Script: {instanceID: 2202}
+      Script: {instanceID: 2206}
     - Class: 114
-      Script: {instanceID: 2430}
+      Script: {instanceID: 2434}
     - Class: 114
-      Script: {instanceID: 2534}
+      Script: {instanceID: 2538}
     - Class: 114
-      Script: {instanceID: 2550}
+      Script: {instanceID: 2554}
     - Class: 114
-      Script: {instanceID: 2610}
+      Script: {instanceID: 2614}
     - Class: 114
-      Script: {instanceID: 2664}
+      Script: {instanceID: 2670}
     - Class: 114
-      Script: {instanceID: 2702}
+      Script: {instanceID: 2708}
     - Class: 114
-      Script: {instanceID: 2932}
+      Script: {instanceID: 2938}
     - Class: 114
-      Script: {instanceID: 3156}
+      Script: {instanceID: 3162}
     - Class: 114
-      Script: {instanceID: 3360}
+      Script: {instanceID: 3366}
     - Class: 114
-      Script: {instanceID: 3364}
+      Script: {instanceID: 3370}
     - Class: 114
-      Script: {instanceID: 3402}
+      Script: {instanceID: 3408}
     - Class: 114
-      Script: {instanceID: 3416}
+      Script: {instanceID: 3422}
     - Class: 114
-      Script: {instanceID: 3606}
+      Script: {instanceID: 3612}
     - Class: 114
-      Script: {instanceID: 3720}
+      Script: {instanceID: 3726}
     - Class: 114
-      Script: {instanceID: 3800}
+      Script: {instanceID: 3806}
     - Class: 114
-      Script: {instanceID: 3954}
+      Script: {instanceID: 3960}
     - Class: 114
-      Script: {instanceID: 3980}
+      Script: {instanceID: 3986}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -181,33 +182,33 @@ ScriptsOnlyBuild:
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1606}
+      Script: {instanceID: 1608}
     - Class: 114
-      Script: {instanceID: 1716}
+      Script: {instanceID: 1718}
     - Class: 114
-      Script: {instanceID: 1762}
+      Script: {instanceID: 1764}
     - Class: 114
-      Script: {instanceID: 1884}
+      Script: {instanceID: 1868}
     - Class: 114
-      Script: {instanceID: 2430}
+      Script: {instanceID: 1888}
     - Class: 114
-      Script: {instanceID: 2610}
+      Script: {instanceID: 2434}
     - Class: 114
-      Script: {instanceID: 2932}
+      Script: {instanceID: 2614}
     - Class: 114
-      Script: {instanceID: 3156}
+      Script: {instanceID: 2626}
     - Class: 114
-      Script: {instanceID: 3416}
+      Script: {instanceID: 2938}
     - Class: 114
-      Script: {instanceID: 3494}
+      Script: {instanceID: 3162}
     - Class: 114
-      Script: {instanceID: 3800}
+      Script: {instanceID: 3422}
     - Class: 114
-      Script: {instanceID: 3954}
+      Script: {instanceID: 3500}
     - Class: 114
-      Script: {instanceID: 27150}
+      Script: {instanceID: 3806}
     - Class: 114
-      Script: {instanceID: 31918}
+      Script: {instanceID: 3960}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -319,6 +320,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner.dll
     namespaceName: UnityEngine.TestTools.TestRunner.Callbacks
     className: PlayerQuitHandler
+  - hash:
+      serializedVersion: 2
+      Hash: 2a9f92be9d8b4270d816559fd0a211f7
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Menu
   - hash:
       serializedVersion: 2
       Hash: caa533b001ae39b864ba8425019e2268
@@ -463,6 +470,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: 0cf507ff18374dd01e6ab44cca0c4266
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MenuSettings
   - hash:
       serializedVersion: 2
       Hash: e21be496674d53901d854220ed15c70a
@@ -739,18 +752,6 @@ ScriptsOnlyBuild:
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
     className: TextContainer
-  - hash:
-      serializedVersion: 2
-      Hash: 2a9f92be9d8b4270d816559fd0a211f7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: Menu
-  - hash:
-      serializedVersion: 2
-      Hash: 0cf507ff18374dd01e6ab44cca0c4266
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: MenuSettings
   platform: 2
   scenePathNames:
   - Assets/Scenes/Menu.unity

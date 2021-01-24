@@ -160,7 +160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61.823, y: -255}
+  m_AnchoredPosition: {x: 61.823, y: -220}
   m_SizeDelta: {x: 175.3939, y: 39.4197}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &22063897
@@ -217,8 +217,8 @@ MonoBehaviour:
   m_OnEndEdit:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 215290478}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+      - m_Target: {fileID: 2079518739}
+        m_TargetAssemblyTypeName: MenuSettings, Assembly-CSharp
         m_MethodName: ChangeSeed
         m_Mode: 0
         m_Arguments:
@@ -356,53 +356,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94731095}
   m_CullTransparentMesh: 1
---- !u!1 &215290477
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 215290479}
-  - component: {fileID: 215290478}
-  m_Layer: 0
-  m_Name: Menu
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &215290478
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215290477}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd98d0cc3bf0249e78fa901833b16655, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  MusicOn: 0
-  IsInvisibility: 0
-  NoMobs: 0
-  Seed: 0
---- !u!4 &215290479
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 215290477}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 248.51012, y: 366.7232, z: 0.73421496}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &285428118
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,8 +465,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -134, y: -78}
-  m_SizeDelta: {x: 644.7909, y: 272.1397}
+  m_AnchoredPosition: {x: -48.054077, y: -72.04361}
+  m_SizeDelta: {x: 472.8989, y: 260.227}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &331444590
 MonoBehaviour:
@@ -869,7 +822,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.72479, y: -134}
+  m_AnchoredPosition: {x: -0.72479, y: -99}
   m_SizeDelta: {x: 160, y: 24.0339}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &577229346
@@ -919,8 +872,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 215290478}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+      - m_Target: {fileID: 2079518739}
+        m_TargetAssemblyTypeName: MenuSettings, Assembly-CSharp
         m_MethodName: IsInvincible
         m_Mode: 0
         m_Arguments:
@@ -1265,7 +1218,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -78.943, y: -335.42}
+  m_AnchoredPosition: {x: -78.943, y: -318}
   m_SizeDelta: {x: 469.7814, y: 63.1543}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &769738148
@@ -1768,7 +1721,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.72479, y: 27.479}
+  m_AnchoredPosition: {x: -0.72479, y: 62.479}
   m_SizeDelta: {x: 300.4886, y: 54.9584}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1131782277
@@ -1830,8 +1783,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 215290478}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+      - m_Target: {fileID: 2079518739}
+        m_TargetAssemblyTypeName: MenuSettings, Assembly-CSharp
         m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
@@ -1917,7 +1870,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 227.1, y: -335.42}
+  m_AnchoredPosition: {x: 227.1, y: -322}
   m_SizeDelta: {x: 155.1628, y: 40.0535}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1133000908
@@ -2161,7 +2114,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -78}
+  m_AnchoredPosition: {x: 0, y: -43}
   m_SizeDelta: {x: 160, y: 24.0339}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1387405120
@@ -2211,9 +2164,9 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 215290478}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
-        m_MethodName: ChangeMusic
+      - m_Target: {fileID: 2079518739}
+        m_TargetAssemblyTypeName: MenuSettings, Assembly-CSharp
+        m_MethodName: IsInvincible
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2868,7 +2821,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.0000025034, y: -195}
+  m_AnchoredPosition: {x: 0.0000025034, y: -160}
   m_SizeDelta: {x: 160, y: 24.0339}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2079807954
@@ -2918,8 +2871,8 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 215290478}
-        m_TargetAssemblyTypeName: Menu, Assembly-CSharp
+      - m_Target: {fileID: 2079518739}
+        m_TargetAssemblyTypeName: MenuSettings, Assembly-CSharp
         m_MethodName: IsNoMobs
         m_Mode: 0
         m_Arguments:
@@ -2931,3 +2884,60 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   m_IsOn: 0
+--- !u!1001 &2900523982395618303
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2900523982608671120, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900523982608671120, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 248.51012
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900523982608671120, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 366.7232
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900523982608671120, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.73421496
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900523982608671120, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900523982608671120, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900523982608671120, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900523982608671120, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900523982608671120, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900523982608671120, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900523982608671120, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2900523982608671122, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}
+      propertyPath: m_Name
+      value: Menu
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 41688e9d5d4f34566944216f7fe995db, type: 3}

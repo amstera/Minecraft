@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
@@ -21,34 +20,6 @@ public class Menu : MonoBehaviour
         else
         {
             Destroy(gameObject);
-        }
-    }
-
-    public void PlayGame()
-    {
-        SceneManager.LoadScene("Game");
-    }
-
-    public void ChangeMusic(bool isOn)
-    {
-        MusicOn = isOn;
-    }
-
-    public void IsInvincible(bool isOn)
-    {
-        IsInvisibility = isOn;
-    }
-
-    public void IsNoMobs(bool isOn)
-    {
-        NoMobs = isOn;
-    }
-
-    public void ChangeSeed(string seed)
-    {
-        if (int.TryParse(seed, out int result))
-        {
-            Seed = result;
         }
     }
 }
