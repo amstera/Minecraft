@@ -98,6 +98,7 @@
     <Compile Include="Assets/PostProcessing/Runtime/Components/DepthOfFieldComponent.cs" />
     <Compile Include="Assets/PostProcessing/Runtime/Components/ColorGradingComponent.cs" />
     <Compile Include="Assets/PostProcessing/Runtime/PostProcessingProfile.cs" />
+    <Compile Include="Assets/Scripts/Crafting.cs" />
     <Compile Include="Assets/Scripts/MiniBlock.cs" />
     <Compile Include="Assets/PostProcessing/Runtime/Components/FogComponent.cs" />
     <Compile Include="Assets/PostProcessing/Runtime/Models/BloomModel.cs" />
@@ -115,7 +116,6 @@
     <Compile Include="Assets/PostProcessing/Runtime/Models/UserLutModel.cs" />
     <Compile Include="Assets/PostProcessing/Runtime/Components/BloomComponent.cs" />
     <Compile Include="Assets/PostProcessing/Runtime/Models/DitheringModel.cs" />
-    <Compile Include="Assets/Scripts/Crafting.cs" />
   </ItemGroup>
   <ItemGroup>
      <None Include="Assets/PostProcessing/Resources/Shaders/ScreenSpaceReflection.shader" />

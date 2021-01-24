@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour
     public GameObject WoodBlock;
     public GameObject Diamond;
     public GameObject Gold;
+    public GameObject GoldBlock;
     public GameObject Sword;
     public GameObject Gun;
     public GameObject Hourglass;
@@ -25,6 +26,7 @@ public class Inventory : MonoBehaviour
     public Texture StoneTexture;
     public Texture DiamondTexture;
     public Texture GoldTexture;
+    public Texture GoldBlockTexture;
     public Texture SwordTexture;
     public Texture GunTexture;
     public Texture HourglassTexture;
@@ -233,6 +235,10 @@ public class Inventory : MonoBehaviour
                 {
                     texture = StoneTexture;
                 }
+                else if (inventory[i].Block == Blocks.GoldBlock)
+                {
+                    texture = GoldBlockTexture;
+                }
                 else if (inventory[i].Block == Blocks.Diamond)
                 {
                     texture = DiamondTexture;
@@ -292,6 +298,10 @@ public class Inventory : MonoBehaviour
             {
                 WoodBlock.SetActive(true);
             }
+            else if (inventory[_selectedIndex].Block == Blocks.GoldBlock)
+            {
+                GoldBlock.SetActive(true);
+            }
             else if (inventory[_selectedIndex].Block == Blocks.Diamond)
             {
                 Diamond.SetActive(true);
@@ -299,6 +309,10 @@ public class Inventory : MonoBehaviour
             else if (inventory[_selectedIndex].Block == Blocks.Gold)
             {
                 Gold.SetActive(true);
+            }
+            else if (inventory[_selectedIndex].Block == Blocks.GoldBlock)
+            {
+                GoldBlock.SetActive(true);
             }
             else if (inventory[_selectedIndex].Block == Blocks.Sword)
             {

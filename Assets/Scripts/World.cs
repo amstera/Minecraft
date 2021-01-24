@@ -10,7 +10,6 @@ public class World : MonoBehaviour
     public int Seed;
     public BiomeAttribute Biome;
     public Transform Player;
-    public Vector3 SpawnPosition;
     public float MobSpawnTimeSeconds = 10;
 
     public Material Material;
@@ -50,7 +49,6 @@ public class World : MonoBehaviour
     {
         Random.InitState(Seed);
         _cam = Camera.main;
-
         GenerateWorld();
         if (MobSpawnTimeSeconds > 0)
         {
@@ -229,8 +227,7 @@ public class World : MonoBehaviour
             _chunksToUpdate.RemoveAt(0);
         }
 
-        SpawnPosition = new Vector3(VoxelData.WorldSizeInBlocks / 2, VoxelData.ChunkHeight - 60, VoxelData.WorldSizeInBlocks / 2);
-        Player.position = SpawnPosition;
+        Player.position = new Vector3(VoxelData.WorldSizeInBlocks / 2, VoxelData.ChunkHeight - 60, VoxelData.WorldSizeInBlocks / 2);
     }
 
     private void CheckViewDistance()
@@ -619,5 +616,6 @@ public enum Blocks
     Wood = 5,
     Leaves = 6,
     Diamond = 7,
-    Gold = 8
+    Gold = 8,
+    GoldBlock = 9
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player : MonoBehaviour
@@ -15,6 +16,7 @@ public class Player : MonoBehaviour
     public GameObject Hearts;
     public GameObject DeathScreen;
     public GameObject Crafting;
+    public GameObject PauseMenu;
 
     public Texture FullHeart;
     public Texture HalfHeart;
@@ -110,7 +112,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    void Jump()
+    public void Unpause()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        PauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    private void Jump()
     {
         _verticalMomentum = JumpForce;
         IsGrounded = false;
@@ -180,6 +194,20 @@ public class Player : MonoBehaviour
             {
                 Cursor.lockState = CursorLockMode.None;
                 Crafting.SetActive(true);
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (PauseMenu.activeSelf)
+            {
+                Unpause();
+            }
+            else
+            {
+                Cursor.lockState = CursorLockMode.None;
+                PauseMenu.SetActive(true);
+                Time.timeScale = 0;
             }
         }
 
