@@ -20,7 +20,6 @@ ScriptsOnlyBuild:
     - UnityEditor.Recorder.MovieRecorderSettings
     - UnityEditor.Recorder.RecorderControllerSettings
     - UnityEditor.Recorder.RecorderSettingsPrefsEditor
-    - UnityEditor.Recorder.RecorderWindow
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
