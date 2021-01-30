@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
     private bool _jumpRequest;
     private float _lastDamageTime;
     private float _lastHealthRegenerationTime;
+    private float _lastRunPressTime;
 
     void Start()
     {
@@ -169,6 +170,22 @@ public class Player : MonoBehaviour
         _horizontal = Input.GetAxis("Horizontal");
         _vertical = Input.GetAxis("Vertical");
 
+        if (Input.GetKeyDown(KeyCode.W))
+        {
+            if (Time.time - _lastRunPressTime <= 0.75f)
+            {
+                IsSprinting = true;
+            }
+            else
+            {
+                _lastRunPressTime = Time.time;
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            IsSprinting = false;
+        }
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             IsSprinting = true;
@@ -226,6 +243,10 @@ public class Player : MonoBehaviour
             else if (selectedBlock == Blocks.Stopwatch)
             {
                 UseStopwatch();
+            }
+            else
+            {
+                DamageEnemy();
             }
 
             if (HighlightBlock.gameObject.activeSelf)
@@ -312,6 +333,21 @@ public class Player : MonoBehaviour
             }
 
             i++;
+        }
+    }
+
+    private void DamageEnemy()
+    {
+        int layerMask = LayerMask.GetMask("Enemy");
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 4, layerMask))
+        {
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(_cam.transform.forward, hit.point, 1, 8);
+            }
         }
     }
 

@@ -145,7 +145,7 @@ public class Inventory : MonoBehaviour
                 if (_blocks[i] == block)
                 {
                     _blocks.RemoveAt(i);
-                    UpdateInventory();
+                    UpdateInventory(false, _blocks.Count(b => b == block) == 0);
                     return;
                 }
             }
@@ -194,7 +194,7 @@ public class Inventory : MonoBehaviour
         UpdateInventory();
     }
 
-    private void UpdateInventory(bool emptyInventory = false)
+    private void UpdateInventory(bool emptyInventory = false, bool shouldRefresh = false)
     {
         List<InventoryBlock> inventory = GetInventory(emptyInventory);
 
@@ -283,7 +283,7 @@ public class Inventory : MonoBehaviour
             ResetHoldingItem();
             Arm.SetActive(true);
         }
-        else if (_previouslySelectedIndex != _selectedIndex || _previousInventoryCount == 0)
+        else if (_previouslySelectedIndex != _selectedIndex || _previousInventoryCount == 0 || shouldRefresh)
         {
             ResetHoldingItem();
             if (inventory[_selectedIndex].Block == Blocks.Dirt)
