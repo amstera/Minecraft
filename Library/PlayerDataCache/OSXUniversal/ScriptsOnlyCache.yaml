@@ -20,6 +20,7 @@ ScriptsOnlyBuild:
     - UnityEditor.Recorder.MovieRecorderSettings
     - UnityEditor.Recorder.RecorderControllerSettings
     - UnityEditor.Recorder.RecorderSettingsPrefsEditor
+    - UnityEditor.Recorder.RecorderWindow
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     UnityEditor.TestRunner.dll:
@@ -173,6 +174,10 @@ ScriptsOnlyBuild:
     - Class: 72
       Script: {instanceID: 0}
     - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
       Script: {instanceID: 0}
     - Class: 84
       Script: {instanceID: 0}
@@ -471,7 +476,7 @@ ScriptsOnlyBuild:
     className: RawImage
   - hash:
       serializedVersion: 2
-      Hash: 0cf507ff18374dd01e6ab44cca0c4266
+      Hash: f1e475b8332ee5fbd31cc579f5fab087
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuSettings
@@ -755,4 +760,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/Menu.unity
   - Assets/Scenes/Game.unity
-  playerPath: /Users/tylergreen/Desktop/Insane Minecraft.app
+  playerPath: /Users/tylergreen/Desktop/Pretty Cool Minecraft.app

@@ -1,9 +1,9 @@
 ﻿<Properties StartupConfiguration="{6D84558F-D623-0CB4-722B-FC6D96BDFC85}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Player.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/MenuSettings.cs">
     <Files>
       <File FileName="Assets/Scripts/World.cs" Line="517" Column="33" />
       <File FileName="Assets/Scripts/Inventory.cs" />
-      <File FileName="Assets/Scripts/Enemy.cs" Line="159" Column="83" />
+      <File FileName="Assets/Scripts/Enemy.cs" />
       <File FileName="Assets/Scripts/BiomeAttribute.cs" />
       <File FileName="Assets/Scripts/Noise.cs" />
       <File FileName="Assets/Scripts/Player.cs" Line="186" Column="33" />
@@ -13,7 +13,7 @@
       <File FileName="Assets/Scripts/Crafting.cs" />
       <File FileName="Assets/Scripts/SwayMovement.cs" />
       <File FileName="Assets/Scripts/Menu.cs" />
-      <File FileName="Assets/Scripts/MenuSettings.cs" />
+      <File FileName="Assets/Scripts/MenuSettings.cs" Line="13" Column="6" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -25,7 +25,7 @@
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="77cf884a-8660-4e04-8548-6f48b87b0956" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="2b189aef-1a5a-41a9-a4f4-d8abdda00e30" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>

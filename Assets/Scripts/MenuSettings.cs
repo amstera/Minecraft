@@ -8,6 +8,7 @@ public class MenuSettings : MonoBehaviour
     public Toggle Invincibility;
     public Toggle NoMobs;
     public InputField Seed;
+    public AudioSource MusicAudioSource;
 
     void Start()
     {
@@ -15,6 +16,8 @@ public class MenuSettings : MonoBehaviour
         Invincibility.isOn = Menu.Instance.IsInvisibility;
         NoMobs.isOn = Menu.Instance.NoMobs;
         Seed.text = Menu.Instance.Seed.ToString();
+
+        ChangeMenuMusic();
     }
 
     public void PlayGame()
@@ -26,6 +29,7 @@ public class MenuSettings : MonoBehaviour
     public void ChangeMusic(bool isOn)
     {
         Menu.Instance.MusicOn = isOn;
+        ChangeMenuMusic();
     }
 
     public void IsInvincible(bool isOn)
@@ -49,5 +53,17 @@ public class MenuSettings : MonoBehaviour
     public void LoadChannel()
     {
         Application.OpenURL("https://www.youtube.com/TylerGreen");
+    }
+
+    private void ChangeMenuMusic()
+    {
+        if (Menu.Instance.MusicOn)
+        {
+            MusicAudioSource.Play();
+        }
+        else
+        {
+            MusicAudioSource.Stop();
+        }
     }
 }
